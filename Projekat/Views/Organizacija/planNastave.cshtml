@@ -1,0 +1,62 @@
+﻿@model Projekat.ViewModels.SmerViewModel
+@{
+    ViewBag.Title = "planNastave";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="sredina" name="sredina" class="sredina-upload-mat">
+    @if (Model != null)
+    {
+        <table style="width:80%;">
+            <tr style="border-bottom:1pt solid black">
+                <th class="forumNaziv" id="naziv">Naziv obrazovnog profila</th>
+                <th class="forumNaziv" id="naziv2">ITHS</th>
+                <th class="forumNaziv" id="naziv3">Novi Sad</th>
+                <th class="forumNaziv" id="naziv4">Ministarstvo</th>
+            </tr>
+            @foreach (var i in Model.smerovi)
+            {
+                <tr>
+                    <td class="forumContent tekst1"><span class="toUpper">@i.smerNaziv </span></td>
+                    <td class="forumContent tekst2"><a href='@Url.Action("SkidanjePlana","Organizacija",new { @id=i.smerId,@type="iths"})'><img height="38" width="38" src="~/Content/img/download.png" /></a></td>
+                    <td class="forumContent tekst3"><a href='@Url.Action("SkidanjePlana","Organizacija",new { @id = i.smerId, @type = "ns" })' ><img height="38" width="38" src="~/Content/img/download.png" /></a></td>
+                    <td class="forumContent tekst4"><a href='@Url.Action("SkidanjePlana","Organizacija",new { @id=i.smerId,@type="ms"})'><img height="38" width="38" src="~/Content/img/download.png" /></a></td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <h5>@ViewBag.ErrorMsg</h5>
+    }
+</div>
+
+<script>
+    $(".forumNaziv").mouseover(function () {
+        if (this.id == "naziv") {
+            $(".tekst1").addClass("forumSelected");
+        }
+        else if (this.id == "naziv2") {
+            $(".tekst2").addClass("forumSelected");
+        }
+        else if (this.id == "naziv3") {
+            $(".tekst3").addClass("forumSelected");
+        }
+        else if (this.id == "naziv4") {
+            $(".tekst4").addClass("forumSelected");
+        }
+    });
+    $(".forumNaziv").mouseleave(function () {
+        if (this.id == "naziv") {
+            $(".tekst1").removeClass("forumSelected");
+        }
+        else if (this.id == "naziv2") {
+            $(".tekst2").removeClass("forumSelected");
+        }
+        else if (this.id == "naziv3") {
+            $(".tekst3").removeClass("forumSelected");
+        }
+        else if (this.id == "naziv4") {
+            $(".tekst4").removeClass("forumSelected");
+        }
+    });
+</script>

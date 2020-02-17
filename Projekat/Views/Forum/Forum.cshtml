@@ -1,0 +1,18 @@
+﻿@model Projekat.ViewModels.ForumViewModel
+@{
+    ViewBag.Title = "Forum";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/Content/css/ForumStyles.css")
+<script src="~/Summernote/summernote.js"></script>
+<link href="~/Summernote/summernote.css" rel="stylesheet" />
+
+<div id="sredina" name="sredina" class="sredina-upload-mat">
+
+    <div class="forum-naslov">
+        <h3 class="forum-title">Forum</h3>
+        <h3 class="forum-title2">Teme predložene od strane učenika</h3>
+    </div>
+    @Html.Partial("_Kartice3", Model)
+
+</div>
