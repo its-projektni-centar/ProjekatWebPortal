@@ -5935,6 +5935,14 @@
 						"$ref": "AAAAAAFo3Di/AJW0M+g="
 					},
 					"name": "Postavi"
+				},
+				{
+					"_type": "UMLAction",
+					"_id": "AAAAAAFwfN6qwTczcGg=",
+					"_parent": {
+						"$ref": "AAAAAAFo3Di/AJW0M+g="
+					},
+					"name": "Action1"
 				}
 			],
 			"edges": [
