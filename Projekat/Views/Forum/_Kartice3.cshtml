@@ -1,6 +1,9 @@
 ﻿@using Projekat.ViewModels;
 @model ForumViewModel
-@foreach (var i in Model.postsModel)
+
+@if(Model != null)
+{ 
+foreach (var i in Model.postsModel)
 {
     <div class="kartica" id=@i.Id_post>
         <div class="karticaTekts">
@@ -69,3 +72,4 @@
         });
     </script>
 }
+    }
