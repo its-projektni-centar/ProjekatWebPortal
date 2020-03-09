@@ -240,7 +240,11 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+# folder konfiguracija mora da postoji zbog toga je stavljen .gitkeep da se uaci folder na git
 /Projekat/Content/Konfiguracija
+
+!/Projekat/Content/Konfiguracija/.gitkeep
+
 /Projekat/Content/uploads/Thumbnails
 
 
