@@ -243,7 +243,7 @@ ModelManifest.xml
 # folder konfiguracija mora da postoji zbog toga je stavljen .gitkeep da se uaci folder na git
 /Projekat/Content/Konfiguracija
 
-!Projekat/Content/Konfiguracija/gitkeep
+!Projekat/Content/Konfiguracija/.gitkeep
 
 /Projekat/Content/uploads/Thumbnails
 
