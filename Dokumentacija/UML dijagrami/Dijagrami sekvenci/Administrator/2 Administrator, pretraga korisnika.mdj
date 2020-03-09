@@ -122,7 +122,7 @@
 													},
 													"visible": false,
 													"font": "Arial;13;0",
-													"left": -96,
+													"left": -112,
 													"height": 13
 												},
 												{
@@ -132,11 +132,11 @@
 														"$ref": "AAAAAAFpOdv4OqckLhI="
 													},
 													"font": "Arial;13;1",
-													"left": 37,
+													"left": 29,
 													"top": 47,
 													"width": 129.91357421875,
 													"height": 13,
-													"text": "Superadministrator"
+													"text": "Administrator"
 												},
 												{
 													"_type": "LabelView",
@@ -146,7 +146,7 @@
 													},
 													"visible": false,
 													"font": "Arial;13;0",
-													"left": -96,
+													"left": -112,
 													"width": 106.20263671875,
 													"height": 13,
 													"text": "(from Interaction1)"
@@ -159,13 +159,13 @@
 													},
 													"visible": false,
 													"font": "Arial;13;0",
-													"left": -96,
+													"left": -112,
 													"height": 13,
 													"horizontalAlignment": 1
 												}
 											],
 											"font": "Arial;13;0",
-											"left": 32,
+											"left": 24,
 											"top": 40,
 											"width": 139.91357421875,
 											"height": 40,
@@ -192,14 +192,14 @@
 												"$ref": "AAAAAAFpOdv4Oaciya0="
 											},
 											"font": "Arial;13;0",
-											"left": 102,
+											"left": 94,
 											"top": 80,
 											"width": 1,
 											"height": 449
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 32,
+									"left": 24,
 									"top": 40,
 									"width": 139.91357421875,
 									"height": 489,
@@ -346,7 +346,7 @@
 												"$ref": "AAAAAAFpOeWSWadmu3M="
 											},
 											"font": "Arial;13;0",
-											"left": 142,
+											"left": 138,
 											"top": 99,
 											"width": 78.04443359375,
 											"height": 13,
@@ -369,7 +369,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 181,
+											"left": 177,
 											"top": 84,
 											"height": 13,
 											"alpha": 1.5707963267948966,
@@ -390,7 +390,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 181,
+											"left": 177,
 											"top": 119,
 											"height": 13,
 											"alpha": -1.5707963267948966,
@@ -423,7 +423,7 @@
 									"tail": {
 										"$ref": "AAAAAAFpOdv4Oqcpums="
 									},
-									"points": "102:115;260:115",
+									"points": "94:115;260:115",
 									"nameLabel": {
 										"$ref": "AAAAAAFpOeWSWqdofD8="
 									},
@@ -4400,7 +4400,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFpOdIP36cC6lg="
 							},
-							"name": "Superadministrator",
+							"name": "Administrator",
 							"represent": {
 								"$ref": "AAAAAAFpOdv4OachzOM="
 							},
@@ -4512,8 +4512,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFpOdIP36cBuHc="
 					},
-					"name": "Role1",
-					"type": ""
+					"name": "Role1"
 				},
 				{
 					"_type": "UMLAttribute",
