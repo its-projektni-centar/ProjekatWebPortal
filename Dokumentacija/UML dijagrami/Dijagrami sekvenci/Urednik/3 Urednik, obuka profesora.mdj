@@ -135,7 +135,7 @@
 													"top": 47,
 													"width": 129.91357421875,
 													"height": 13,
-													"text": "Superadministrator"
+													"text": "Urednik"
 												},
 												{
 													"_type": "LabelView",
@@ -3913,7 +3913,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFpOdIP36cC6lg="
 							},
-							"name": "Superadministrator",
+							"name": "Urednik",
 							"represent": {
 								"$ref": "AAAAAAFpOdv4OachzOM="
 							},
@@ -4025,8 +4025,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFpOdIP36cBuHc="
 					},
-					"name": "Role1",
-					"type": ""
+					"name": "Role1"
 				},
 				{
 					"_type": "UMLAttribute",
