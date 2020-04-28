@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace Projekat
 {
@@ -10,7 +9,6 @@ namespace Projekat
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
-
 
             // "~/Scripts/jquery.validate*"
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -46,7 +44,6 @@ namespace Projekat
                       //"~/Scripts/bootbox.js",
                       "~/Scripts/respond.js"));
 
-
             /* OVO SU NOVO DODATI BUNDLOVI */
 
             bundles.Add(new ScriptBundle("~/bundles/materijal_prikaz").Include(
@@ -60,6 +57,11 @@ namespace Projekat
             //"~/Scripts/Materijal/uploadMaterijal.js",
             "~/Scripts/customDropdown.js"
             ));
+            bundles.Add(new ScriptBundle("~/bundles/DodajModul").Include(
+            "~/Scripts/Modul/DodajModul.js",
+            //"~/Scripts/Materijal/uploadMaterijal.js",
+            "~/Scripts//Modul/customDropdownModul.js"
+            ));
 
             bundles.Add(new ScriptBundle("~/bundles/predmet_prikaz").Include(
              "~/Scripts/Predmet/editPredmeta.js",
@@ -69,6 +71,14 @@ namespace Projekat
 
             bundles.Add(new ScriptBundle("~/bundles/novi_predmet").Include(
              "~/Scripts/Predmet/validacijaNovogPredmeta.js"
+            ));
+
+            bundles.Add(new ScriptBundle("~/bundles/novi_modul").Include(
+             "~/Scripts/Modul/validacijaNovogModula.js"
+            ));
+
+            bundles.Add(new ScriptBundle("~/bundles/edit_modul").Include(
+             "~/Scripts/Modul/validacijaEditModula.js"
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/smer_prikaz").Include(
@@ -92,11 +102,11 @@ namespace Projekat
            "~/Scripts/Korisnik/izmeniKorisnika.js",
            "~/Scripts/Korisnik/SakrijGodine.js"
            ));
-            
+
             bundles.Add(new ScriptBundle("~/bundles/lista_korisnika").Include(
-             
+
              "~/Scripts/datatables.min.js",
-             
+
              "~/Scripts/Korisnik/listaKorisnika.js",
              "~/Scripts/UI/select2.min.js",
              "~/Scripts/customDropdown.js",
@@ -113,10 +123,9 @@ namespace Projekat
                       );*/
             /* KRAJ NOVIH CISTIH */
 
-
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/css/reset.css",
-                     /* "~/Content/bootstrap.css",*/
+                      /* "~/Content/bootstrap.css",*/
                       "~/Content/css/bootstrap-flatly.css",
                       "~/Content/css/site.css",
                      "~/Content/css/datatables.min.css",

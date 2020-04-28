@@ -231,6 +231,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MaterijalController.cs" />
+    <Compile Include="Controllers\ModulController.cs" />
     <Compile Include="Controllers\OrganizacijaController.cs" />
     <Compile Include="Controllers\PredmetController.cs" />
     <Compile Include="Controllers\RazredController.cs" />
@@ -330,6 +331,14 @@
     <Compile Include="Migrations\MaterijalContext\201909061316464_RAZREDI.Designer.cs">
       <DependentUpon>201909061316464_RAZREDI.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\MaterijalContext\202004130926040_DodavanjeModula.cs" />
+    <Compile Include="Migrations\MaterijalContext\202004130926040_DodavanjeModula.Designer.cs">
+      <DependentUpon>202004130926040_DodavanjeModula.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\MaterijalContext\202004141601328_IspravkaMaterijala.cs" />
+    <Compile Include="Migrations\MaterijalContext\202004141601328_IspravkaMaterijala.Designer.cs">
+      <DependentUpon>202004141601328_IspravkaMaterijala.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\MaterijalContext\MaterijalConfiguration.cs" />
     <Compile Include="Migrations\VestiContext\201808170921538_Dodavanje_Vesti_U_Bazu.cs" />
     <Compile Include="Migrations\VestiContext\201808170921538_Dodavanje_Vesti_U_Bazu.Designer.cs">
@@ -361,6 +370,7 @@
     <Compile Include="Models\MaterijalPoTipu.cs" />
     <Compile Include="Models\MaterijalProfesorModel.cs" />
     <Compile Include="Models\MaterijalSharingInitializer.cs" />
+    <Compile Include="Models\ModulModel.cs" />
     <Compile Include="Models\NamenaMaterijalaModel.cs" />
     <Compile Include="Models\Organizacija.cs" />
     <Compile Include="Models\PredmetModel.cs" />
@@ -374,6 +384,7 @@
     <Compile Include="Models\VestModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\DodajModulViewModel.cs" />
     <Compile Include="ViewModels\DodajPremetViewModel.cs" />
     <Compile Include="ViewModels\DodajVestViewModel.cs" />
     <Compile Include="ViewModels\ForumViewModel.cs" />
@@ -429,6 +440,7 @@
     <Content Include="Content\img\chat.jpg" />
     <Content Include="Content\img\chat_speech_bubble_communication_interaction_-_36-512.png" />
     <Content Include="Content\img\cikica.png" />
+    <Content Include="Content\img\DeleteIco.png" />
     <Content Include="Content\img\download.jpg" />
     <Content Include="Content\img\download.png" />
     <Content Include="Content\img\folder-add-storage-file-organize-512-removebg-preview.png" />
@@ -528,6 +540,13 @@
     <Content Include="Scripts\Korisnik\register.js" />
     <Content Include="Scripts\Korisnik\SakrijGodine.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Modul\customDropdownModul.js" />
+    <Content Include="Scripts\Modul\ModulDelete.js" />
+    <Content Include="Scripts\Modul\ProveraImenaDodaj.js" />
+    <Content Include="Scripts\Modul\ProveraImenaIzmena.js" />
+    <Content Include="Scripts\Modul\validacijaEditModula.js" />
+    <Content Include="Scripts\Modul\validacijaNovogModula.js" />
+    <Content Include="Scripts\Modul\OpisShow.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -733,6 +752,11 @@
     <Content Include="Views\Forum\_DodavanjeTeme.cshtml" />
     <Content Include="Views\Organizacija\dodavanjeNastave.cshtml" />
     <Content Include="Views\Razred\RazrediPrikaz.cshtml" />
+    <Content Include="Views\Modul\ModulPrikaz.cshtml" />
+    <Content Include="Views\Modul\DodajModul.cshtml" />
+    <Content Include="Views\Modul\_PredmetiNaSmeruModul.cshtml" />
+    <Content Include="Views\Modul\Index.cshtml" />
+    <Content Include="Views\Modul\EditModul.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Konfiguracija\" />
@@ -812,6 +836,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\MaterijalContext\201909061316464_RAZREDI.resx">
       <DependentUpon>201909061316464_RAZREDI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\MaterijalContext\202004130926040_DodavanjeModula.resx">
+      <DependentUpon>202004130926040_DodavanjeModula.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\MaterijalContext\202004141601328_IspravkaMaterijala.resx">
+      <DependentUpon>202004141601328_IspravkaMaterijala.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\VestiContext\201808170921538_Dodavanje_Vesti_U_Bazu.resx">
       <DependentUpon>201808170921538_Dodavanje_Vesti_U_Bazu.cs</DependentUpon>

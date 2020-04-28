@@ -1,9 +1,7 @@
-﻿using System;
+﻿using Projekat.ViewModels;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
-using Projekat.ViewModels;
 
 namespace Projekat.Models
 {
@@ -21,6 +19,7 @@ namespace Projekat.Models
         /// Queryable selection of MaterijalModel Classes.
         /// </value>
         public DbSet<MaterijalModel> materijali { get; set; }
+
         /// <summary>
         /// Gets the queryable data source for predmeti.
         /// </summary>
@@ -28,6 +27,7 @@ namespace Projekat.Models
         /// The queryable selection of PredmetModelClasses.
         /// </value>
         public DbSet<PredmetModel> predmeti { get; set; }
+
         /// <summary>
         /// Gets the queryable data source for smerovi.
         /// </summary>
@@ -35,6 +35,7 @@ namespace Projekat.Models
         /// The queryable selection of SmerModel Classes.
         /// </value>
         public DbSet<SmerModel> smerovi { get; set; }
+
         /// <summary>
         /// Gets the queryable data source for NamenaMaterijala.
         /// </summary>
@@ -42,6 +43,7 @@ namespace Projekat.Models
         /// The queryable selection of NamenaMaterijalaModel Classes.
         /// </value>
         public DbSet<NamenaMaterijalaModel> nameneMaterijala { get; set; }
+
         /// <summary>
         /// Gets the queryable data source for PredmetiPoSmeru.
         /// </summary>
@@ -49,6 +51,7 @@ namespace Projekat.Models
         /// The queryable selection of PredmetPoSmeru Classes.
         /// </value>
         public DbSet<PredmetPoSmeru> predmetiPoSmeru { get; set; }
+
         /// <summary>
         /// Gets the queryable data source for TipMaterijala.
         /// </summary>
@@ -56,17 +59,25 @@ namespace Projekat.Models
         /// The queryable selection of TipMaterijala Classes.
         /// </value>
         public DbSet<TipMaterijalModel> tipMaterijala { get; set; }
+
         public DbSet<SkolaModel> Skole { get; set; }
         public DbSet<Forum_Post> Forum { get; set; }
         public DbSet<Forum_Message> Message { get; set; }
         //public DbSet<AspNetUser> Users { get; set; }
         //public DbSet<MaterijalProfesorModel> Profesormaterijali { get; set; }
 
+        public DbSet<ModulModel> moduli { get; set; }
+
         IQueryable<TipMaterijalModel> IMaterijalContext.tipMaterijala
         {
             get { return tipMaterijala; }
-
         }
+
+        IQueryable<ModulModel> IMaterijalContext.moduli
+        {
+            get { return moduli; }
+        }
+
         IQueryable<PredmetModel> IMaterijalContext.predmeti
         {
             get { return predmeti; }
@@ -87,7 +98,10 @@ namespace Projekat.Models
             get { return nameneMaterijala; }
         }
 
-        IQueryable<MaterijalModel> IMaterijalContext.materijali => throw new NotImplementedException();
+        IQueryable<MaterijalModel> IMaterijalContext.materijali
+        {
+            get { return materijali; }
+        }
 
         T IMaterijalContext.Add<T>(T entity)
         {
@@ -112,17 +126,15 @@ namespace Projekat.Models
             return materijal;
         }
 
-
         int IMaterijalContext.SaveChanges()
         {
-
             return SaveChanges();
         }
 
-        IQueryable<OsiromaseniMaterijali> IMaterijalContext.poPredmetu(int? predmetId)
+        IQueryable<OsiromaseniMaterijali> IMaterijalContext.poModulu(int? modulId)
         {
             IQueryable<OsiromaseniMaterijali> materijali;
-            materijali = this.materijali.Where(m => m.predmetId == predmetId&&m.odobreno!=null).Select(m => new OsiromaseniMaterijali
+            materijali = this.materijali.Where(m => m.modulId == modulId && m.odobreno != null).Select(m => new OsiromaseniMaterijali
             {
                 namenaID = m.namenaMaterijalaId,
                 materijalId = m.materijalId,
@@ -130,15 +142,16 @@ namespace Projekat.Models
                 materijalNaslov = m.materijalNaslov,
                 materijalOpis = m.materijalOpis,
                 tipMaterijalaId = m.tipMaterijalId,
-                predmetId = m.predmetId
+                modulId = m.modulId
             });
 
             return materijali;
         }
+
         IQueryable<OsiromaseniMaterijali> IMaterijalContext.nacekanju()
         {
             IQueryable<OsiromaseniMaterijali> materijali;
-            materijali =this.materijali.Where(m => m.odobreno == null).Select(m => new OsiromaseniMaterijali
+            materijali = this.materijali.Where(m => m.odobreno == null).Select(m => new OsiromaseniMaterijali
             {
                 namenaID = m.namenaMaterijalaId,
                 materijalId = m.materijalId,
@@ -146,63 +159,48 @@ namespace Projekat.Models
                 materijalNaslov = m.materijalNaslov,
                 materijalOpis = m.materijalOpis,
                 tipMaterijalaId = m.tipMaterijalId,
-                predmetId = m.predmetId
+                modulId = m.modulId
             });
             return materijali;
         }
 
-
-        IQueryable<OsiromaseniMaterijali> IMaterijalContext.naprednaPretraga(List<string> ekstenzije, List<int> tipoviMaterijalaIds, int? predmetId,int namenaID)//Dodati parametre 
+        IQueryable<OsiromaseniMaterijali> IMaterijalContext.naprednaPretraga(List<string> ekstenzije, List<int> tipoviMaterijalaIds, int? modulId, int namenaID)//Dodati parametre
         {
             // && (a => tipoviMaterijalaIds.Any(s => a.tipMaterijalaId)
 
-
             IMaterijalContext context = new MaterijalContext();
-            var queriable = context.poPredmetu(predmetId);
+            var queriable = context.poModulu(modulId);
             queriable = poNameni(namenaID, queriable);
 
             if (ekstenzije != null && tipoviMaterijalaIds != null)
             {
-
                 queriable = queriable.
                    Where(a => ekstenzije.Any(s => a.ekstenzija.Contains(s)));
-
 
                 queriable = queriable.
                     Where(a => tipoviMaterijalaIds.Any(s => a.tipMaterijalaId.ToString().Contains(s.ToString())));
 
-
                 return queriable;
-
             }
-
             else if (ekstenzije == null && tipoviMaterijalaIds != null)
             {
                 queriable = queriable.
                 Where(a => tipoviMaterijalaIds.Any(s => a.tipMaterijalaId.ToString().Contains(s.ToString())));
 
-
                 return queriable;
-
             }
-
             else if (ekstenzije != null && tipoviMaterijalaIds == null)
             {
-
                 queriable = queriable.
                 Where(a => ekstenzije.Any(s => a.ekstenzija.Contains(s)));
 
-
                 return queriable;
-
             }
             else
                 return queriable;
-
-
         }
 
-        public IQueryable<OsiromaseniMaterijali> poNameni(int namenaID,IQueryable<OsiromaseniMaterijali> materijali)
+        public IQueryable<OsiromaseniMaterijali> poNameni(int namenaID, IQueryable<OsiromaseniMaterijali> materijali)
         {
             materijali = materijali.Where(m => m.namenaID == namenaID).Select(m => new OsiromaseniMaterijali
             {
@@ -212,8 +210,7 @@ namespace Projekat.Models
                 materijalNaslov = m.materijalNaslov,
                 materijalOpis = m.materijalOpis,
                 tipMaterijalaId = m.tipMaterijalaId,
-                predmetId = m.predmetId
-                
+                modulId = m.modulId
             });
 
             return materijali;

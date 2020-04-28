@@ -61,34 +61,9 @@ $(document).ready(function () {
                 // dodati uslov pod kojim ce se raditi ajax (samo ako su smerovi u pitanju)
                 $.ajax({
                     method: 'GET',
-                    url: '/Materijal/UploadMaterijal',
+                    url: '/Modul/DodajModul',
                     data: {
                         smerId: default_smerID,
-                    },
-                    success: function (data) {
-                        $('.customSelect').remove();
-                        $('#_predmetiNaSmeru').html('');
-                        $('#_predmetiNaSmeru').html(data);
-                        genericDropdownBuild();
-                    },
-                    error: function () {
-                        console.log("ne valja");
-                    }
-                });
-            }
-            if ($(this).parent().parent().prev().hasClass('predmeti')) {
-                default_predmetID = $(this).parent().parent().prev().find($("option:selected")).val();
-                console.log(default_predmetID);
-                default_smerID = $(".smerovi").find($("option:selected")).val();
-                console.log(default_smerID);
-                // premestiti u customDropdown.js i append na ovaj event
-                // dodati uslov pod kojim ce se raditi ajax (samo ako su smerovi u pitanju)
-                $.ajax({
-                    method: 'GET',
-                    url: '/Materijal/UploadMaterijal',
-                    data: {
-                        smerId: default_smerID,
-                        predmetId: default_predmetID,
                     },
                     success: function (data) {
                         $('.customSelect').remove();
