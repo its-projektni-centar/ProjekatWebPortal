@@ -60,17 +60,64 @@ namespace Projekat.Models
         /// </value>
         public DbSet<TipMaterijalModel> tipMaterijala { get; set; }
 
+         /// <summary>
+        /// Gets the queryable data source for MaterijalPoModulu.
+        /// </summary>
+        /// <value>
+        /// The queryable selection of MaterijalPoModulu Classes.
+        /// </value>
+        public DbSet<MaterijalPoModulu> materijalPoModulu { get; set; }
+
+        /// <summary>
+        /// Gets the queryable data source for tipPredmeta.
+        /// </summary>
+        /// <value>
+        /// The queryable selection of tipPredmeta Classes.
+        /// </value>
+        public DbSet<TipPredmetaModel> tipPredmeta { get; set; }
+
         public DbSet<SkolaModel> Skole { get; set; }
         public DbSet<Forum_Post> Forum { get; set; }
         public DbSet<Forum_Message> Message { get; set; }
+
         //public DbSet<AspNetUser> Users { get; set; }
         //public DbSet<MaterijalProfesorModel> Profesormaterijali { get; set; }
 
+        /// <summary>
+        /// Gets the queryable data source for ModulModel.
+        /// </summary>
+        /// <value>
+        /// The queryable selection of ModulModel Classes.
+        /// </value>
         public DbSet<ModulModel> moduli { get; set; }
+        
+        /// <summary>
+        /// Gets the queryable data source for GlobalniZahteviModel.
+        /// </summary>
+        /// <value>
+        /// The queryable selection of GlobalniZahteviModel Classes.
+        /// </value>
+        public DbSet<GlobalniZahteviModel> globalniZahtevi { get; set; }
+
+        IQueryable<MaterijalPoModulu> IMaterijalContext.materijalPoModulu
+        {
+            get { return materijalPoModulu; }
+        }
+
+        IQueryable<GlobalniZahteviModel> IMaterijalContext.globalniZahtevi
+        {
+            get { return globalniZahtevi; }
+        }
+
 
         IQueryable<TipMaterijalModel> IMaterijalContext.tipMaterijala
         {
             get { return tipMaterijala; }
+        }
+
+        IQueryable<TipPredmetaModel> IMaterijalContext.tipPredmeta
+        {
+            get { return tipPredmeta; }
         }
 
         IQueryable<ModulModel> IMaterijalContext.moduli
@@ -134,16 +181,36 @@ namespace Projekat.Models
         IQueryable<OsiromaseniMaterijali> IMaterijalContext.poModulu(int? modulId)
         {
             IQueryable<OsiromaseniMaterijali> materijali;
-            materijali = this.materijali.Where(m => m.modulId == modulId && m.odobreno != null).Select(m => new OsiromaseniMaterijali
+
+            materijali = from mat in this.materijali
+                         select new OsiromaseniMaterijali
+                         {
+                             namenaID = mat.namenaMaterijalaId,
+                             materijalId = mat.materijalId,
+                             ekstenzija = mat.materijalEkstenzija,
+                             materijalNaslov = mat.materijalNaslov,
+                             materijalOpis = mat.materijalOpis,
+                             tipMaterijalaId = mat.tipMaterijalId
+                         };
+
+            if (modulId != null)
             {
-                namenaID = m.namenaMaterijalaId,
-                materijalId = m.materijalId,
-                ekstenzija = m.materijalEkstenzija,
-                materijalNaslov = m.materijalNaslov,
-                materijalOpis = m.materijalOpis,
-                tipMaterijalaId = m.tipMaterijalId,
-                modulId = m.modulId
-            });
+                materijali = from mat in this.materijali
+                             join matPoMod in this.materijalPoModulu
+                             on mat.materijalId equals matPoMod.materijalId
+                             where matPoMod.modulId == modulId
+                             select new OsiromaseniMaterijali
+                             {
+                                 namenaID = mat.namenaMaterijalaId,
+                                 materijalId = mat.materijalId,
+                                 ekstenzija = mat.materijalEkstenzija,
+                                 materijalNaslov = mat.materijalNaslov,
+                                 materijalOpis = mat.materijalOpis,
+                                 tipMaterijalaId = mat.tipMaterijalId,
+                                 modulId = modulId
+                             };
+            }
+
 
             return materijali;
         }
@@ -159,16 +226,33 @@ namespace Projekat.Models
                 materijalNaslov = m.materijalNaslov,
                 materijalOpis = m.materijalOpis,
                 tipMaterijalaId = m.tipMaterijalId,
-                modulId = m.modulId
             });
             return materijali;
         }
 
         IQueryable<OsiromaseniMaterijali> IMaterijalContext.naprednaPretraga(List<string> ekstenzije, List<int> tipoviMaterijalaIds, int? modulId, int namenaID)//Dodati parametre
         {
-            // && (a => tipoviMaterijalaIds.Any(s => a.tipMaterijalaId)
-
             IMaterijalContext context = new MaterijalContext();
+            // && (a => tipoviMaterijalaIds.Any(s => a.tipMaterijalaId)
+            if (namenaID == 2)
+            {
+                IQueryable<OsiromaseniMaterijali> materijali2;
+
+                materijali2 = from mat in this.materijali
+                              where mat.namenaMaterijalaId == 2
+                              select new OsiromaseniMaterijali
+                              {
+                                  namenaID = mat.namenaMaterijalaId,
+                                  materijalId = mat.materijalId,
+                                  ekstenzija = mat.materijalEkstenzija,
+                                  materijalNaslov = mat.materijalNaslov,
+                                  materijalOpis = mat.materijalOpis,
+                                  tipMaterijalaId = mat.tipMaterijalId
+                              };
+
+                return materijali2;
+            }
+
             var queriable = context.poModulu(modulId);
             queriable = poNameni(namenaID, queriable);
 

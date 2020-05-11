@@ -49,6 +49,7 @@ namespace Projekat
             bundles.Add(new ScriptBundle("~/bundles/materijal_prikaz").Include(
                        "~/Scripts/Materijal/brisanjeMaterijala.js",
                        "~/Scripts/Materijal/filterMaterijal.js",
+                       "~/Scripts/Zahtev/zahtevUpgrade.js",
                        "~/Scripts/customDropdown.js"
             ));
 
@@ -58,7 +59,6 @@ namespace Projekat
             "~/Scripts/customDropdown.js"
             ));
             bundles.Add(new ScriptBundle("~/bundles/DodajModul").Include(
-            "~/Scripts/Modul/DodajModul.js",
             //"~/Scripts/Materijal/uploadMaterijal.js",
             "~/Scripts//Modul/customDropdownModul.js"
             ));
@@ -103,6 +103,12 @@ namespace Projekat
            "~/Scripts/Korisnik/SakrijGodine.js"
            ));
 
+            bundles.Add(new ScriptBundle("~/bundles/PrikazZahteva").Include(
+                "~/Scripts/Zahtev/ZahtevDelete.js"
+            ));
+            bundles.Add(new ScriptBundle("~/bundles/zahtevDropdown").Include(
+                "~/Scripts/Zahtev/zahtevDropdown.js"
+            ));
             bundles.Add(new ScriptBundle("~/bundles/lista_korisnika").Include(
 
              "~/Scripts/datatables.min.js",

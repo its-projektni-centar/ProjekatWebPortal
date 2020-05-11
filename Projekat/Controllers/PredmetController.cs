@@ -3,7 +3,6 @@ using Projekat.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Projekat.Controllers
@@ -32,12 +31,13 @@ namespace Projekat.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Authorize(Roles = "SuperAdministrator,Urednik")]
+        [Authorize(Roles = "SuperAdministrator,LokalniUrednik")]
         public ActionResult DodajPredmet()
         {
             context = new MaterijalContext();
             DodajPremetViewModel viewModel = new DodajPremetViewModel();
             viewModel.smerovi = context.smerovi.ToList();
+            viewModel.tip = 1;
 
             return View("DodajPredmet", viewModel);
         }
@@ -48,13 +48,15 @@ namespace Projekat.Controllers
         /// <param name="viewModel">The view model.</param>
         /// <returns></returns>
         [HttpPost]
-        [Authorize(Roles = "SuperAdministrator,Urednik")]
+        [Authorize(Roles = "SuperAdministrator,LokalniUrednik")]
         public ActionResult DodajPredmet(DodajPremetViewModel viewModel)
         {
             context = new MaterijalContext();
 
             try
             {
+                viewModel.predmet.tipId = 1;
+
                 context.Add<PredmetModel>(viewModel.predmet);
 
                 foreach (int n in viewModel.smerIds)
@@ -87,12 +89,15 @@ namespace Projekat.Controllers
         /// <param name="predmetId">Id predmeta koji treba promeniti.</param>
         /// <returns></returns>
         [HttpPost]
-        [Authorize(Roles = "SuperAdministrator,Urednik")]
+        [Authorize(Roles = "SuperAdministrator,LokalniUrednik, GlobalniUrednik")]
         public ActionResult Edit(int smerId, List<int> smeroviId, string predmetNaziv, string predmetOpis, int predmetId, int Razred)
         {
             context = new MaterijalContext();
 
             PredmetModel predmetPromenjenji = context.predmeti.FirstOrDefault(m => m.predmetId == predmetId);
+            int tipID = context.predmeti.Where(m => m.predmetId == predmetId).Select(m => m.tipId).First();
+
+            string tip = context.tipPredmeta.Where(m => m.tipId == tipID).Select(m => m.tipNaziv).First();
             List<int> smeroviIdIzBaze = context.predmetiPoSmeru.Where(m => m.predmetId == predmetId).Select(m => m.smerId).ToList();
 
             if (predmetPromenjenji == null)
@@ -102,41 +107,6 @@ namespace Projekat.Controllers
             predmetPromenjenji.predmetNaziv = predmetNaziv;
             predmetPromenjenji.predmetOpis = predmetOpis;
             predmetPromenjenji.Razred = Razred;
-
-            /*foreach (int smerID in smeroviId)
-						{
-							if (!smeroviIdIzBaze.Contains(smerID))
-							{
-								context.Add<PredmetPoSmeru>(new PredmetPoSmeru
-								{
-									predmetId = predmetId,
-									smerId = smerID
-								});
-							}
-						}
-						foreach (int smerID in smeroviIdIzBaze)
-						{
-							if (!smeroviId.Contains(smerID))
-							{
-								List<PredmetPoSmeru> lista = context.predmetiPoSmeru.Where(m => m.predmetId == predmetId).ToList();
-								foreach (PredmetPoSmeru predmet in lista)
-								{
-									context.Delete(predmet);
-								}
-							}
-						}
-
-						foreach (int smerID in smeroviIdIzBaze)
-						{
-							if (!smeroviId.Contains(smerID))
-							{
-								List<PredmetPoSmeru> lista = context.predmetiPoSmeru.Where(m => m.predmetId == predmetId).ToList();
-								foreach (PredmetPoSmeru predmetPoSmeru in lista)
-								{
-									context.Delete(predmetPoSmeru);
-								}
-							}
-						}*/
 
             var predmetiPoSmeruZaBrisanje = context.predmetiPoSmeru.Where(pps => pps.predmetId == predmetId);
             foreach (PredmetPoSmeru pps in predmetiPoSmeruZaBrisanje)
@@ -160,7 +130,7 @@ namespace Projekat.Controllers
 
             string smernaziv = context.smerovi.FirstOrDefault(x => x.smerId == smerId).smerNaziv;
 
-            return RedirectToAction("PredmetiPrikaz", new { smer = smernaziv, razred = Razred });
+            return RedirectToAction("PredmetiPrikaz", new { smer = smernaziv, razred = Razred, tip });
         }
 
         /// <summary>
@@ -195,45 +165,35 @@ namespace Projekat.Controllers
         [HttpGet]
         public ActionResult PredmetiPrikaz(string Smer, int razred)
         {
-            Smer = HttpUtility.UrlDecode(Smer);
-            int id;
             context = new MaterijalContext();
+            List<SmerModel> smerovi = context.smerovi.ToList();
+
+            int smerId;
 
             int razredPOM = razred;
             try
             {
-                id = context.smerovi.FirstOrDefault(x => x.smerNaziv == Smer).smerId;
+                smerId = context.smerovi.FirstOrDefault(x => x.smerNaziv == Smer).smerId;
             }
             catch
             {
                 return View("FileNotFound");
             }
-
-            List<PredmetPoSmeru> poSmeru = context.predmetiPoSmeru.Where(m => m.smerId == id && m.PredmetModel.Razred.Value == razredPOM).ToList();
-            List<PredmetModel> model = new List<PredmetModel>();
-            List<PredmetModel> tempPredmet = context.predmeti.ToList();
-            List<SmerModel> smerovi = context.smerovi.ToList();
-
-            foreach (PredmetPoSmeru ps in poSmeru)
+            
+            if (smerId != 0)
             {
-                model.Add(tempPredmet.Where(m => m.predmetId == ps.predmetId).Single());
+
             }
+            var predPoSmer = context.predmetiPoSmeru.Where(x => x.smerId == smerId).Select(x => x.predmetId);
+            List<PredmetModel> predmeti = context.predmeti.Where(x => predPoSmer.Contains(x.predmetId) && x.Razred == razredPOM).ToList();
+
 
             PredmetPoSmeruViewModel predmetiPoSmeru = new PredmetPoSmeruViewModel
             {
-                predmeti = model,
+                predmeti = predmeti,
                 smerovi = smerovi,
-                smerId = id
+                smerId = smerId
             };
-
-            //try
-            //{
-            //}
-            //catch (Exception)
-            //{
-            //    throw;
-            //}
-
             return View("PredmetiPrikaz", predmetiPoSmeru);
         }
     }

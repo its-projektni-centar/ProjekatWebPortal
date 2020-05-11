@@ -7,7 +7,7 @@
         var url = window.location.href;
         var args = url.split('/');
 
-        var predmetId = args[args.length - 1];
+        var modulId = args[args.length - 1];
         var sort = '';
         var filterDatumSpanText = $('.datum').next('.customSelect').find('span').text();
 
@@ -52,7 +52,7 @@
             method: 'GET',
             url: '/Materijal/MaterijaliPrikaz',
             data: {
-                id: predmetId,
+                id: modulId,
                 sort: sort,
                 tipovi: tipovi,
                 formati: formati

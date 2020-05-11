@@ -228,6 +228,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\ForumController.cs" />
+    <Compile Include="Controllers\GlobalniController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MaterijalController.cs" />
@@ -237,6 +238,7 @@
     <Compile Include="Controllers\RazredController.cs" />
     <Compile Include="Controllers\SmerController.cs" />
     <Compile Include="Controllers\VestiController.cs" />
+    <Compile Include="Controllers\ZahtevController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -339,6 +341,26 @@
     <Compile Include="Migrations\MaterijalContext\202004141601328_IspravkaMaterijala.Designer.cs">
       <DependentUpon>202004141601328_IspravkaMaterijala.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\MaterijalContext\202004281616586_IzmenaMaterijala.cs" />
+    <Compile Include="Migrations\MaterijalContext\202004281616586_IzmenaMaterijala.Designer.cs">
+      <DependentUpon>202004281616586_IzmenaMaterijala.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\MaterijalContext\202004281722043_IzmenaPredmeta.cs" />
+    <Compile Include="Migrations\MaterijalContext\202004281722043_IzmenaPredmeta.Designer.cs">
+      <DependentUpon>202004281722043_IzmenaPredmeta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\MaterijalContext\202004291031474_ModulMaterijal.cs" />
+    <Compile Include="Migrations\MaterijalContext\202004291031474_ModulMaterijal.Designer.cs">
+      <DependentUpon>202004291031474_ModulMaterijal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\MaterijalContext\202004301654512_GlobalniZahtevi.cs" />
+    <Compile Include="Migrations\MaterijalContext\202004301654512_GlobalniZahtevi.Designer.cs">
+      <DependentUpon>202004301654512_GlobalniZahtevi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\MaterijalContext\202005070834487_GlobalniZahtevi1.cs" />
+    <Compile Include="Migrations\MaterijalContext\202005070834487_GlobalniZahtevi1.Designer.cs">
+      <DependentUpon>202005070834487_GlobalniZahtevi1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\MaterijalContext\MaterijalConfiguration.cs" />
     <Compile Include="Migrations\VestiContext\201808170921538_Dodavanje_Vesti_U_Bazu.cs" />
     <Compile Include="Migrations\VestiContext\201808170921538_Dodavanje_Vesti_U_Bazu.Designer.cs">
@@ -361,11 +383,13 @@
     <Compile Include="Models\AspNetUser.cs" />
     <Compile Include="Models\Forum_Message.cs" />
     <Compile Include="Models\Forum_Post.cs" />
+    <Compile Include="Models\GlobalniZahteviModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IMaterijalContext.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MaterijalContext.cs" />
     <Compile Include="Models\MaterijalModel.cs" />
+    <Compile Include="Models\MaterijalPoModulu.cs" />
     <Compile Include="Models\MaterijalPoPredmetu.cs" />
     <Compile Include="Models\MaterijalPoTipu.cs" />
     <Compile Include="Models\MaterijalProfesorModel.cs" />
@@ -380,6 +404,7 @@
     <Compile Include="Models\StrucnaSpremaModel.cs" />
     <Compile Include="Models\TeloVestiModel.cs" />
     <Compile Include="Models\TipMaterijalModel.cs" />
+    <Compile Include="Models\TipPredmetaModel.cs" />
     <Compile Include="Models\VestiContext.cs" />
     <Compile Include="Models\VestModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -388,6 +413,7 @@
     <Compile Include="ViewModels\DodajPremetViewModel.cs" />
     <Compile Include="ViewModels\DodajVestViewModel.cs" />
     <Compile Include="ViewModels\ForumViewModel.cs" />
+    <Compile Include="ViewModels\GlobalniZahtevViewModel.cs" />
     <Compile Include="ViewModels\ListaKorisnikaViewModel.cs" />
     <Compile Include="ViewModels\ListaNaprednaPretragaViewModel.cs" />
     <Compile Include="ViewModels\LoggedUserViewModel.cs" />
@@ -479,6 +505,7 @@
     <Content Include="Content\img\trougao-breadcrumbs.png" />
     <Content Include="Content\img\TXTicon.png" />
     <Content Include="Content\img\ucenik.png" />
+    <Content Include="Content\img\upgradeIco.png" />
     <Content Include="Content\img\upload.png" />
     <Content Include="Content\img\upload2.png" />
     <Content Include="Content\img\uredi.png" />
@@ -539,6 +566,10 @@
     <Content Include="Scripts\datatables.min.js" />
     <Content Include="Scripts\Korisnik\register.js" />
     <Content Include="Scripts\Korisnik\SakrijGodine.js" />
+    <Content Include="Scripts\Modul\ProveraImenaDodajGlobalni.js" />
+    <Content Include="Scripts\Modul\ProveraImenaIzmenaGlobalni.js" />
+    <Content Include="Scripts\Zahtev\zahtevDropdown.js" />
+    <Content Include="Scripts\Zahtev\zahtevUpgrade.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\Modul\customDropdownModul.js" />
     <Content Include="Scripts\Modul\ModulDelete.js" />
@@ -613,6 +644,7 @@
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Scripts\Vesti\prikazVesti.js" />
     <Content Include="Scripts\Vesti\validacijaVesti.js" />
+    <Content Include="Scripts\Zahtev\ZahtevDelete.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Summernote\font\summernote.eot" />
     <Content Include="Summernote\font\summernote.ttf" />
@@ -730,7 +762,6 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Vesti\PrikaziVest.cshtml" />
-    <Content Include="Views\Shared\FileNotFound2.cshtml" />
     <Content Include="Views\Account\LoggedUserData.cshtml" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
@@ -755,8 +786,18 @@
     <Content Include="Views\Modul\ModulPrikaz.cshtml" />
     <Content Include="Views\Modul\DodajModul.cshtml" />
     <Content Include="Views\Modul\_PredmetiNaSmeruModul.cshtml" />
-    <Content Include="Views\Modul\Index.cshtml" />
     <Content Include="Views\Modul\EditModul.cshtml" />
+    <Content Include="Views\Zahtev\PrikazZahteva.cshtml" />
+    <Content Include="Views\Zahtev\_KarticeZahtev.cshtml" />
+    <Content Include="Views\Zahtev\Accept.cshtml" />
+    <Content Include="Views\Zahtev\_ZahtevDropdown.cshtml" />
+    <Content Include="Views\Globalni\MaterijaliPrikaz.cshtml" />
+    <Content Include="Views\Globalni\_Kartice.cshtml" />
+    <Content Include="Views\Globalni\DodajPredmet.cshtml" />
+    <Content Include="Views\Globalni\PredmetiPrikaz.cshtml" />
+    <Content Include="Views\Globalni\ModuliPrikaz.cshtml" />
+    <Content Include="Views\Globalni\DodajModul.cshtml" />
+    <Content Include="Views\Globalni\EditModul.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Konfiguracija\" />
@@ -842,6 +883,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\MaterijalContext\202004141601328_IspravkaMaterijala.resx">
       <DependentUpon>202004141601328_IspravkaMaterijala.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\MaterijalContext\202004281616586_IzmenaMaterijala.resx">
+      <DependentUpon>202004281616586_IzmenaMaterijala.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\MaterijalContext\202004281722043_IzmenaPredmeta.resx">
+      <DependentUpon>202004281722043_IzmenaPredmeta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\MaterijalContext\202004291031474_ModulMaterijal.resx">
+      <DependentUpon>202004291031474_ModulMaterijal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\MaterijalContext\202004301654512_GlobalniZahtevi.resx">
+      <DependentUpon>202004301654512_GlobalniZahtevi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\MaterijalContext\202005070834487_GlobalniZahtevi1.resx">
+      <DependentUpon>202005070834487_GlobalniZahtevi1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\VestiContext\201808170921538_Dodavanje_Vesti_U_Bazu.resx">
       <DependentUpon>201808170921538_Dodavanje_Vesti_U_Bazu.cs</DependentUpon>
