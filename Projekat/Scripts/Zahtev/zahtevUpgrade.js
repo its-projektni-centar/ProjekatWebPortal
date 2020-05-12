@@ -6,7 +6,6 @@
         return false;
     }
     else {
-        
         $('#poruka').empty();
         return true;
     }
@@ -18,7 +17,6 @@ $('.upgrade').click(function () {
     $('#poruka').empty();
     $('#zahtevOpis').empty();
     $("#zahtevModal").modal('show');
-    
 })
 $('#zahtevOpis').keyup(function () {
     validate();
@@ -38,17 +36,10 @@ $("#upgradeConfirm").on("click", function () {
             success: function (result) {
                 $("#zahtevModal").modal('hide');
                 if (result) {
-                    
                     alert("Uspesno podnet zahtev za postavljanje globalnog materijala");
-
-                }
-                else {
-                   
-                    alert("Vec postoji podnet zahtev za dati materijal.");
                 }
                 $("#zahtevOpis").val("");
             }
         });
     }
-    
 })

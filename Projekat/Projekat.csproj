@@ -361,6 +361,10 @@
     <Compile Include="Migrations\MaterijalContext\202005070834487_GlobalniZahtevi1.Designer.cs">
       <DependentUpon>202005070834487_GlobalniZahtevi1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\MaterijalContext\202005120949226_MaterijalObrisan.cs" />
+    <Compile Include="Migrations\MaterijalContext\202005120949226_MaterijalObrisan.Designer.cs">
+      <DependentUpon>202005120949226_MaterijalObrisan.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\MaterijalContext\MaterijalConfiguration.cs" />
     <Compile Include="Migrations\VestiContext\201808170921538_Dodavanje_Vesti_U_Bazu.cs" />
     <Compile Include="Migrations\VestiContext\201808170921538_Dodavanje_Vesti_U_Bazu.Designer.cs">
@@ -566,6 +570,7 @@
     <Content Include="Scripts\datatables.min.js" />
     <Content Include="Scripts\Korisnik\register.js" />
     <Content Include="Scripts\Korisnik\SakrijGodine.js" />
+    <Content Include="Scripts\Materijal\PredlogDropdown.js" />
     <Content Include="Scripts\Modul\ProveraImenaDodajGlobalni.js" />
     <Content Include="Scripts\Modul\ProveraImenaIzmenaGlobalni.js" />
     <Content Include="Scripts\Zahtev\zahtevDropdown.js" />
@@ -798,6 +803,7 @@
     <Content Include="Views\Globalni\ModuliPrikaz.cshtml" />
     <Content Include="Views\Globalni\DodajModul.cshtml" />
     <Content Include="Views\Globalni\EditModul.cshtml" />
+    <Content Include="Views\Materijal\_ZahtevDropdown.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Konfiguracija\" />
@@ -898,6 +904,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\MaterijalContext\202005070834487_GlobalniZahtevi1.resx">
       <DependentUpon>202005070834487_GlobalniZahtevi1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\MaterijalContext\202005120949226_MaterijalObrisan.resx">
+      <DependentUpon>202005120949226_MaterijalObrisan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\VestiContext\201808170921538_Dodavanje_Vesti_U_Bazu.resx">
       <DependentUpon>201808170921538_Dodavanje_Vesti_U_Bazu.cs</DependentUpon>

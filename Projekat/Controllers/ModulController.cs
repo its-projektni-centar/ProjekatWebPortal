@@ -51,7 +51,6 @@ namespace Projekat.Controllers
 
         [HttpGet]
         [Authorize(Roles = "SuperAdministrator,LokalniUrednik")]
-
         public ActionResult DodajModul(int? smerId)
         {
             DodajModulViewModel viewModel = new DodajModulViewModel
@@ -105,7 +104,7 @@ namespace Projekat.Controllers
             {
                 m.modul.predmetId = m.predmetId;
             }
-            
+
             try
             {
                 context.Add<ModulModel>(m.modul);
@@ -204,26 +203,22 @@ namespace Projekat.Controllers
             {
                 if (listaMaterijalId != null)
                 {
-                    foreach(var i in listaMaterijalId)
+                    foreach (var i in listaMaterijalId)
                     {
                         var postoji = context.materijalPoModulu.Where(x => x.materijalId == i);
                         if (postoji.Count() == 0)
                         {
                             MaterijalModel zaBrisanje = context.materijali.Single(x => x.materijalId == i);
-                            try{
-                                
-
-                                context.Delete<MaterijalModel>(zaBrisanje);
+                            try
+                            {
+                                zaBrisanje.Obrisan = true;
                                 context.SaveChanges();
-                                
                             }
-
                             catch
                             {
                                 result = false;
                                 return Json(result, JsonRequestBehavior.AllowGet);
                             }
-                            
                         }
                     }
                     result = true;
@@ -231,7 +226,6 @@ namespace Projekat.Controllers
             }
             catch
             {
-
             }
             return Json(result, JsonRequestBehavior.AllowGet);
         }

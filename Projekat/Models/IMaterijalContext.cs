@@ -104,6 +104,14 @@ namespace Projekat.Models
         T Add<T>(T entity) where T : class;
 
         /// <summary>
+        /// Searches the global material by identifier.
+        /// </summary>
+        /// <typeparam name="materijalId">The identifier</typeparam>
+        /// <param name="entity">The entity.</param>
+        /// <returns></returns>
+        bool PostojiGlobalni(int? materijalId);
+
+        /// <summary>
         /// Searches material by identifier.
         /// </summary>
         /// <param name="id">The identifier.</param>

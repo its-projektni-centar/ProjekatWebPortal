@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity;
 using Projekat.Models;
 using Projekat.ViewModels;
 using System;
@@ -205,7 +205,6 @@ namespace Projekat.Controllers
                     }
                     return PartialView("_PredmetiNaSmeru", viewModel);
                 }
-
                 else
                 {
                     return new HttpStatusCodeResult(403);
@@ -260,6 +259,7 @@ namespace Projekat.Controllers
                     materijal.materijalEkstenzija = Path.GetExtension(nazivFajla);
                     materijal.materijalOpis = materijal.materijalOpis;
                     materijal.materijalNaslov = materijal.materijalNaslov;
+                    materijal.Obrisan = false;
 
                     context.Add<MaterijalModel>(materijal);
                     context.SaveChanges();
@@ -415,9 +415,8 @@ namespace Projekat.Controllers
             if (lista.Count == 0)
             {
                 MaterijalModel temp = context.pronadjiMaterijalPoId(id);
-                context.Delete<MaterijalModel>(temp);
+                temp.Obrisan = true;
                 context.SaveChanges();
-
             }
 
             return RedirectToAction("MaterijaliPrikaz");

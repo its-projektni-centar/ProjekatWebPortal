@@ -1,5 +1,10 @@
 ﻿@using Projekat.ViewModels;
+@using Projekat.Models;
 @model MaterijaliNaprednaPretragaViewModel
+
+@{
+    MaterijalContext context = new MaterijalContext();
+}
 @foreach (var osiromaseni in Model.osiromaseniMaterijali)
 {
     //using (Html.BeginForm("Delete", "UploadMaterijal", new { id = materijal.materijalId }))
@@ -19,8 +24,17 @@
                 <div class="triTackeKontrole" tabindex="1">
                     <img src="~/Content/img/tri-tacke.png" alt="jos-opcija">
                     <div class="dropdown-sadrzaj">
-                        <a class="dropdownOpcija" href="#">Obriši</a>
-                        <a class="dropdownOpcija" href="#">Uredi</a>
+                        @if (this.User.IsInRole("SuperAdministrator") || this.User.IsInRole("LokalniUrednik"))
+                        {
+                            <a class="dropdownOpcija" href="#">Obriši</a>
+                        }
+                        @if (this.User.IsInRole("LokalniUrednik") || this.User.IsInRole("Profesor"))
+                        {
+                            if (!context.PostojiGlobalni(osiromaseni.materijalId))
+                            {
+                                <a class="dropdownOpcija upgrade" href="#">Postavi globalno</a>
+                            }
+                        }
                         <a class="dropdownOpcija" href="#">Komentariši</a>
                     </div>
                 </div>
@@ -36,7 +50,11 @@
                 }
                 @if (this.User.IsInRole("LokalniUrednik") || this.User.IsInRole("Profesor"))
                 {
-                    <a class="upgrade" href="#"><img style="width:12px;" src="~/Content/img/upgradeIco.png" /></a>;
+
+                    if (!context.PostojiGlobalni(osiromaseni.materijalId))
+                    {
+                        <a class="upgrade" href="#"><img style="width:12px;" src="~/Content/img/upgradeIco.png" /></a>;
+                    }
                 }
                 <a class="preuzmi" href="@Url.Action("DownloadMaterijal", "Materijal", new { id = osiromaseni.materijalId })">preuzmi</a>
             </div>

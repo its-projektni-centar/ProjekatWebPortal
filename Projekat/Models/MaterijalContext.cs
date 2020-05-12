@@ -60,7 +60,7 @@ namespace Projekat.Models
         /// </value>
         public DbSet<TipMaterijalModel> tipMaterijala { get; set; }
 
-         /// <summary>
+        /// <summary>
         /// Gets the queryable data source for MaterijalPoModulu.
         /// </summary>
         /// <value>
@@ -90,7 +90,7 @@ namespace Projekat.Models
         /// The queryable selection of ModulModel Classes.
         /// </value>
         public DbSet<ModulModel> moduli { get; set; }
-        
+
         /// <summary>
         /// Gets the queryable data source for GlobalniZahteviModel.
         /// </summary>
@@ -108,7 +108,6 @@ namespace Projekat.Models
         {
             get { return globalniZahtevi; }
         }
-
 
         IQueryable<TipMaterijalModel> IMaterijalContext.tipMaterijala
         {
@@ -178,6 +177,20 @@ namespace Projekat.Models
             return SaveChanges();
         }
 
+        public bool PostojiGlobalni(int? materijalId)
+        {
+            var globalPredmeti = this.predmeti.Where(x => x.tipId == 2).Select(x => x.predmetId).ToList();
+            var globalModuli = this.moduli.Where(x => globalPredmeti.Contains((int)x.predmetId)).Select(x => x.modulId).ToList();
+
+            List<MaterijalPoModulu> materijalPoModulus = this.materijalPoModulu.Where(x => x.materijalId == materijalId && globalModuli.Contains(x.modulId)).ToList();
+
+            if (materijalPoModulus.Count > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
         IQueryable<OsiromaseniMaterijali> IMaterijalContext.poModulu(int? modulId)
         {
             IQueryable<OsiromaseniMaterijali> materijali;
@@ -210,7 +223,6 @@ namespace Projekat.Models
                                  modulId = modulId
                              };
             }
-
 
             return materijali;
         }
