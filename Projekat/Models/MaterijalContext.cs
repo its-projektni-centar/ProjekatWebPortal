@@ -21,20 +21,12 @@ namespace Projekat.Models
         public DbSet<MaterijalModel> materijali { get; set; }
 
         /// <summary>
-        /// Gets the queryable data source for predmeti.
+        /// Gets the queryable data source for TipMaterijala.
         /// </summary>
         /// <value>
-        /// The queryable selection of PredmetModelClasses.
+        /// The queryable selection of TipMaterijala Classes.
         /// </value>
-        public DbSet<PredmetModel> predmeti { get; set; }
-
-        /// <summary>
-        /// Gets the queryable data source for smerovi.
-        /// </summary>
-        /// <value>
-        /// The queryable selection of SmerModel Classes.
-        /// </value>
-        public DbSet<SmerModel> smerovi { get; set; }
+        public DbSet<TipMaterijalModel> tipMaterijala { get; set; }
 
         /// <summary>
         /// Gets the queryable data source for NamenaMaterijala.
@@ -45,43 +37,12 @@ namespace Projekat.Models
         public DbSet<NamenaMaterijalaModel> nameneMaterijala { get; set; }
 
         /// <summary>
-        /// Gets the queryable data source for PredmetiPoSmeru.
-        /// </summary>
-        /// <value>
-        /// The queryable selection of PredmetPoSmeru Classes.
-        /// </value>
-        public DbSet<PredmetPoSmeru> predmetiPoSmeru { get; set; }
-
-        /// <summary>
-        /// Gets the queryable data source for TipMaterijala.
-        /// </summary>
-        /// <value>
-        /// The queryable selection of TipMaterijala Classes.
-        /// </value>
-        public DbSet<TipMaterijalModel> tipMaterijala { get; set; }
-
-        /// <summary>
         /// Gets the queryable data source for MaterijalPoModulu.
         /// </summary>
         /// <value>
         /// The queryable selection of MaterijalPoModulu Classes.
         /// </value>
         public DbSet<MaterijalPoModulu> materijalPoModulu { get; set; }
-
-        /// <summary>
-        /// Gets the queryable data source for tipPredmeta.
-        /// </summary>
-        /// <value>
-        /// The queryable selection of tipPredmeta Classes.
-        /// </value>
-        public DbSet<TipPredmetaModel> tipPredmeta { get; set; }
-
-        public DbSet<SkolaModel> Skole { get; set; }
-        public DbSet<Forum_Post> Forum { get; set; }
-        public DbSet<Forum_Message> Message { get; set; }
-
-        //public DbSet<AspNetUser> Users { get; set; }
-        //public DbSet<MaterijalProfesorModel> Profesormaterijali { get; set; }
 
         /// <summary>
         /// Gets the queryable data source for ModulModel.
@@ -92,6 +53,54 @@ namespace Projekat.Models
         public DbSet<ModulModel> moduli { get; set; }
 
         /// <summary>
+        /// Gets the queryable data source for predmeti.
+        /// </summary>
+        /// <value>
+        /// The queryable selection of PredmetModelClasses.
+        /// </value>
+        public DbSet<PredmetModel> predmeti { get; set; }
+
+        /// <summary>
+        /// Gets the queryable data source for tipPredmeta.
+        /// </summary>
+        /// <value>
+        /// The queryable selection of tipPredmeta Classes.
+        /// </value>
+        public DbSet<TipPredmetaModel> tipPredmeta { get; set; }
+
+        /// <summary>
+        /// Gets the queryable data source for PredmetiPoSmeru.
+        /// </summary>
+        /// <value>
+        /// The queryable selection of PredmetPoSmeru Classes.
+        /// </value>
+        public DbSet<PredmetPoSmeru> predmetiPoSmeru { get; set; }
+
+        /// <summary>
+        /// Gets the queryable data source for smerovi.
+        /// </summary>
+        /// <value>
+        /// The queryable selection of SmerModel Classes.
+        /// </value>
+        public DbSet<SmerModel> smerovi { get; set; }
+
+        /// <summary>
+        /// Gets the queryable data source for smeroviPoSkolama.
+        /// </summary>
+        /// <value>
+        /// The queryable selection of SmerMSmerPoSkoli Classes.
+        /// </value>
+        public DbSet<SmerPoSkoli> smeroviPoSkolama { get; set; }
+
+        /// <summary>
+        /// Gets the queryable data source for SkolaModel.
+        /// </summary>
+        /// <value>
+        /// The queryable selection of SkolaModel Classes.
+        /// </value>
+        public DbSet<SkolaModel> Skole { get; set; }
+
+        /// <summary>
         /// Gets the queryable data source for GlobalniZahteviModel.
         /// </summary>
         /// <value>
@@ -99,14 +108,28 @@ namespace Projekat.Models
         /// </value>
         public DbSet<GlobalniZahteviModel> globalniZahtevi { get; set; }
 
-        IQueryable<MaterijalPoModulu> IMaterijalContext.materijalPoModulu
-        {
-            get { return materijalPoModulu; }
-        }
+        /// <summary>
+        /// Gets the queryable data source for Forum_Post.
+        /// </summary>
+        /// <value>
+        /// The queryable selection of Forum_Post Classes.
+        /// </value>
+        public DbSet<Forum_Post> Forum { get; set; }
 
-        IQueryable<GlobalniZahteviModel> IMaterijalContext.globalniZahtevi
+        /// <summary>
+        /// Gets the queryable data source for Forum_Message.
+        /// </summary>
+        /// <value>
+        /// The queryable selection of Forum_Message Classes.
+        /// </value>
+        public DbSet<Forum_Message> Message { get; set; }
+
+        //public DbSet<AspNetUser> Users { get; set; }
+        //public DbSet<MaterijalProfesorModel> Profesormaterijali { get; set; }
+
+        IQueryable<MaterijalModel> IMaterijalContext.materijali
         {
-            get { return globalniZahtevi; }
+            get { return materijali; }
         }
 
         IQueryable<TipMaterijalModel> IMaterijalContext.tipMaterijala
@@ -114,9 +137,14 @@ namespace Projekat.Models
             get { return tipMaterijala; }
         }
 
-        IQueryable<TipPredmetaModel> IMaterijalContext.tipPredmeta
+        IQueryable<NamenaMaterijalaModel> IMaterijalContext.nameneMaterijala
         {
-            get { return tipPredmeta; }
+            get { return nameneMaterijala; }
+        }
+
+        IQueryable<MaterijalPoModulu> IMaterijalContext.materijalPoModulu
+        {
+            get { return materijalPoModulu; }
         }
 
         IQueryable<ModulModel> IMaterijalContext.moduli
@@ -129,9 +157,9 @@ namespace Projekat.Models
             get { return predmeti; }
         }
 
-        IQueryable<SmerModel> IMaterijalContext.smerovi
+        IQueryable<TipPredmetaModel> IMaterijalContext.tipPredmeta
         {
-            get { return smerovi; }
+            get { return tipPredmeta; }
         }
 
         IQueryable<PredmetPoSmeru> IMaterijalContext.predmetiPoSmeru
@@ -139,14 +167,24 @@ namespace Projekat.Models
             get { return predmetiPoSmeru; }
         }
 
-        IQueryable<NamenaMaterijalaModel> IMaterijalContext.nameneMaterijala
+        IQueryable<SmerModel> IMaterijalContext.smerovi
         {
-            get { return nameneMaterijala; }
+            get { return smerovi; }
         }
 
-        IQueryable<MaterijalModel> IMaterijalContext.materijali
+        IQueryable<SmerPoSkoli> IMaterijalContext.smeroviPoSkolama
         {
-            get { return materijali; }
+            get { return smeroviPoSkolama; }
+        }
+
+        IQueryable<SkolaModel> IMaterijalContext.skole
+        {
+            get { return Skole; }
+        }
+
+        IQueryable<GlobalniZahteviModel> IMaterijalContext.globalniZahtevi
+        {
+            get { return globalniZahtevi; }
         }
 
         T IMaterijalContext.Add<T>(T entity)

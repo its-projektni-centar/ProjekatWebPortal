@@ -1,4 +1,4 @@
-﻿using System.Web.Optimization;
+using System.Web.Optimization;
 
 namespace Projekat
 {
@@ -88,7 +88,8 @@ namespace Projekat
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/novi_smer").Include(
-             "~/Scripts/Smer/validacijaNovogSmera.js"
+             "~/Scripts/Smer/validacijaNovogSmera.js",
+             "~/Scripts/customDropdown.js"
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/novi_korisnik").Include(

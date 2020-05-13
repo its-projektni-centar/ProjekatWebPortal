@@ -1,4 +1,4 @@
-﻿@model Projekat.Models.SmerModel
+﻿@model Projekat.ViewModels.DodajSmerViewModel
 @{
     ViewBag.Title = "DodajSmer";
 }
@@ -9,13 +9,15 @@
         <h2>Novi smer</h2>
         <label class="matDesignLabel" for="smerNaziv">Naziv smera</label>
         @Html.TextBoxFor(m => m.smerNaziv, new { @name = "smerNaziv" });
-   
+
         <label class="matDesignLabel" for="smerSkraceno">Skracenica</label>
         @Html.TextBoxFor(m => m.smerSkraceno, new { @id = "korisnikTB" });
 
         <label class="matDesignLabel" for="smerOpis">Opis</label>
         @Html.TextAreaFor(m => m.smerOpis, new { @name = "smerOpis" });
 
+        <label class="matDesignLabel" for="skole">Skole</label>
+        @Html.DropDownListFor(m => m.skolaId, new SelectList(Model.skole, "idSkole", "NazivSkole"), new { @class = "customDropdown" })
 
         <button type="submit" id="postavi">POSTAVI</button>
     }

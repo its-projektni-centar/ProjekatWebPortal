@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
@@ -236,6 +236,7 @@
     <Compile Include="Controllers\OrganizacijaController.cs" />
     <Compile Include="Controllers\PredmetController.cs" />
     <Compile Include="Controllers\RazredController.cs" />
+    <Compile Include="Controllers\SkolaController.cs" />
     <Compile Include="Controllers\SmerController.cs" />
     <Compile Include="Controllers\VestiController.cs" />
     <Compile Include="Controllers\ZahtevController.cs" />
@@ -365,6 +366,10 @@
     <Compile Include="Migrations\MaterijalContext\202005120949226_MaterijalObrisan.Designer.cs">
       <DependentUpon>202005120949226_MaterijalObrisan.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\MaterijalContext\202005130816299_SmeroviPoSkolama.cs" />
+    <Compile Include="Migrations\MaterijalContext\202005130816299_SmeroviPoSkolama.Designer.cs">
+      <DependentUpon>202005130816299_SmeroviPoSkolama.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\MaterijalContext\MaterijalConfiguration.cs" />
     <Compile Include="Migrations\VestiContext\201808170921538_Dodavanje_Vesti_U_Bazu.cs" />
     <Compile Include="Migrations\VestiContext\201808170921538_Dodavanje_Vesti_U_Bazu.Designer.cs">
@@ -405,6 +410,7 @@
     <Compile Include="Models\PredmetPoSmeru.cs" />
     <Compile Include="Models\SkolaModel.cs" />
     <Compile Include="Models\SmerModel.cs" />
+    <Compile Include="Models\SmerPoSkoli.cs" />
     <Compile Include="Models\StrucnaSpremaModel.cs" />
     <Compile Include="Models\TeloVestiModel.cs" />
     <Compile Include="Models\TipMaterijalModel.cs" />
@@ -415,6 +421,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\DodajModulViewModel.cs" />
     <Compile Include="ViewModels\DodajPremetViewModel.cs" />
+    <Compile Include="ViewModels\DodajSmerViewModel.cs" />
     <Compile Include="ViewModels\DodajVestViewModel.cs" />
     <Compile Include="ViewModels\ForumViewModel.cs" />
     <Compile Include="ViewModels\GlobalniZahtevViewModel.cs" />
@@ -807,6 +814,7 @@
     <Content Include="Views\Globalni\EditModul.cshtml" />
     <Content Include="Views\Materijal\_ZahtevDropdown.cshtml" />
     <Content Include="Views\Modul\ModulPrikaz.cshtml" />
+    <Content Include="Views\Skola\SkolaPrikaz.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Konfiguracija\" />
@@ -910,6 +918,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\MaterijalContext\202005120949226_MaterijalObrisan.resx">
       <DependentUpon>202005120949226_MaterijalObrisan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\MaterijalContext\202005130816299_SmeroviPoSkolama.resx">
+      <DependentUpon>202005130816299_SmeroviPoSkolama.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\VestiContext\201808170921538_Dodavanje_Vesti_U_Bazu.resx">
       <DependentUpon>201808170921538_Dodavanje_Vesti_U_Bazu.cs</DependentUpon>

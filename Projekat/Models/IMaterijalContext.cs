@@ -18,6 +18,30 @@ namespace Projekat.Models
         IQueryable<MaterijalModel> materijali { get; }
 
         /// <summary>
+        /// Gets the queryable data source for NamenaMaterijala.
+        /// </summary>
+        /// <value>
+        /// The queryable selection of NamenaMaterijalaModel Classes.
+        /// </value>
+        IQueryable<NamenaMaterijalaModel> nameneMaterijala { get; }
+
+        /// <summary>
+        /// Gets the queryable data source for TipMaterijala.
+        /// </summary>
+        /// <value>
+        /// The queryable selection of TipMaterijala Classes.
+        /// </value>
+        IQueryable<TipMaterijalModel> tipMaterijala { get; }
+
+        /// <summary>
+        /// Gets the queryable data source for MaterijalPoModulu.
+        /// </summary>
+        /// <value>
+        /// The queryable selection of MaterijalPoModulu Classes.
+        /// </value>
+        IQueryable<MaterijalPoModulu> materijalPoModulu { get; }
+
+        /// <summary>
         /// Gets the queryable data source for moduli.
         /// </summary>
         /// <value>
@@ -34,20 +58,12 @@ namespace Projekat.Models
         IQueryable<PredmetModel> predmeti { get; }
 
         /// <summary>
-        /// Gets the queryable data source for smerovi.
+        /// Gets the queryable data source for TipPredmeta.
         /// </summary>
         /// <value>
-        /// The queryable selection of SmerModel Classes.
+        /// The queryable selection of TipPredmeta Classes.
         /// </value>
-        IQueryable<SmerModel> smerovi { get; }
-
-        /// <summary>
-        /// Gets the queryable data source for NamenaMaterijala.
-        /// </summary>
-        /// <value>
-        /// The queryable selection of NamenaMaterijalaModel Classes.
-        /// </value>
-        IQueryable<NamenaMaterijalaModel> nameneMaterijala { get; }
+        IQueryable<TipPredmetaModel> tipPredmeta { get; }
 
         /// <summary>
         /// Gets the queryable data source for PredmetiPoSmeru.
@@ -58,28 +74,28 @@ namespace Projekat.Models
         IQueryable<PredmetPoSmeru> predmetiPoSmeru { get; }
 
         /// <summary>
-        /// Gets the queryable data source for TipMaterijala.
+        /// Gets the queryable data source for smerovi.
         /// </summary>
         /// <value>
-        /// The queryable selection of TipMaterijala Classes.
+        /// The queryable selection of SmerModel Classes.
         /// </value>
-        IQueryable<TipMaterijalModel> tipMaterijala { get; }
+        IQueryable<SmerModel> smerovi { get; }
 
         /// <summary>
-        /// Gets the queryable data source for TipPredmeta.
+        /// Gets the queryable data source for smerovi.
         /// </summary>
         /// <value>
-        /// The queryable selection of TipPredmeta Classes.
+        /// The queryable selection of SmerModel Classes.
         /// </value>
-        IQueryable<TipPredmetaModel> tipPredmeta { get; }
+        IQueryable<SmerPoSkoli> smeroviPoSkolama { get; }
 
         /// <summary>
-        /// Gets the queryable data source for MaterijalPoModulu.
+        /// Gets the queryable data source for smerovi.
         /// </summary>
         /// <value>
-        /// The queryable selection of MaterijalPoModulu Classes.
+        /// The queryable selection of SmerModel Classes.
         /// </value>
-        IQueryable<MaterijalPoModulu> materijalPoModulu { get; }
+        IQueryable<SkolaModel> skole { get; }
 
         /// <summary>
         /// Gets the queryable data source for GlobalniZahtevi.

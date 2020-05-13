@@ -1,4 +1,5 @@
 ﻿using Projekat.Models;
+using Projekat.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -47,7 +48,7 @@ namespace Projekat.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<ActionResult> SmeroviPrikaz()
+        public async Task<ActionResult> SmeroviPrikaz(int? id)
         {
             if (this.User.IsInRole("Ucenik"))
             {
@@ -57,8 +58,8 @@ namespace Projekat.Controllers
                 else
                     return new HttpNotFoundResult("Smer nije nadjen");
             }
-            List<SmerModel> smeroviInDb;
-            smeroviInDb = context.smerovi.ToList();
+            var smerPoSk = context.smeroviPoSkolama.Where(x => x.skolaId == id).Select(x => x.smerId).ToList();
+            List<SmerModel> smeroviInDb = context.smerovi.Where(x => smerPoSk.Contains(x.smerId)).ToList();
             SmerModel smer = new SmerModel();
             smer.smerovi = smeroviInDb;
 
@@ -73,7 +74,12 @@ namespace Projekat.Controllers
         [Authorize(Roles = "SuperAdministrator,LokalniUrednik")]
         public ActionResult DodajSmer()
         {
-            return View();
+            List<SkolaModel> temp = context.skole.ToList();
+            DodajSmerViewModel vm = new DodajSmerViewModel()
+            {
+                skole = temp
+            };
+            return View("DodajSmer", vm);
         }
 
         /// <summary>
@@ -83,14 +89,26 @@ namespace Projekat.Controllers
         /// <returns></returns>
         [HttpPost]
         [Authorize(Roles = "SuperAdministrator,LokalniUrednik")]
-        public ActionResult DodajSmer(SmerModel smer)
+        public ActionResult DodajSmer(DodajSmerViewModel smer)
         {
+            SmerModel temp = new SmerModel();
             if (ModelState.IsValid)
             {
                 if (smer.smerId == 0)
                 {
-                    context.Add<SmerModel>(smer);
-                    context.SaveChanges();
+                    SmerModel model = new SmerModel()
+                    {
+                        smerNaziv = smer.smerNaziv,
+                        smerOpis = smer.smerOpis,
+                        smerSkraceno = smer.smerSkraceno
+                    };
+                    try
+                    {
+                        context.Add<SmerModel>(model);
+                        context.SaveChanges();
+                        temp = context.smerovi.Where(x => x.smerNaziv == model.smerNaziv && x.smerOpis == model.smerOpis && x.smerSkraceno == model.smerSkraceno).SingleOrDefault();
+                    }
+                    catch { }
                 }
                 else
                 {
@@ -99,10 +117,25 @@ namespace Projekat.Controllers
                     smerInDb.smerNaziv = smer.smerNaziv;
                     smerInDb.smerOpis = smer.smerOpis;
 
+                    try
+                    {
+                        context.SaveChanges();
+                        temp = context.smerovi.Where(x => x.smerId == smer.smerId).SingleOrDefault();
+                    }
+                    catch { }
+                }
+                try
+                {
+                    context.Add<SmerPoSkoli>(new SmerPoSkoli()
+                    {
+                        skolaId = smer.skolaId,
+                        smerId = temp.smerId
+                    });
                     context.SaveChanges();
                 }
+                catch { }
 
-                return RedirectToAction("SmeroviPrikaz");
+                return RedirectToAction("SmeroviPrikaz", new { id = smer.skolaId });
             }
             return View();
         }
