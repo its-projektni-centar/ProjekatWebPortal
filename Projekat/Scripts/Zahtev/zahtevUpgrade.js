@@ -1,4 +1,14 @@
-﻿function validate() {
+﻿$(document).ready(function () {
+    var data = sessionStorage.getItem('zahtevSnack');
+    if (data) {
+        $('#snackbar').css('display', 'block');
+        sessionStorage.removeItem('zahtevSnack');
+    }
+    else
+        $('#snackbar').css('display', 'none');
+})
+
+function validate() {
     var value = $('#zahtevOpis').val();
 
     if (value.length < 5 || value.length > 250) {
@@ -37,7 +47,8 @@ $("#upgradeConfirm").on("click", function () {
                 $("#zahtevModal").modal('hide');
                 
                 if (result) {
-                    alert("Uspesno podnet zahtev za postavljanje globalnog materijala");
+                    sessionStorage.setItem('zahtevSnack', true);
+                    
                     
                 }
                 location.reload();

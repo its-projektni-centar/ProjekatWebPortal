@@ -806,6 +806,7 @@
     <Content Include="Views\Globalni\DodajModul.cshtml" />
     <Content Include="Views\Globalni\EditModul.cshtml" />
     <Content Include="Views\Materijal\_ZahtevDropdown.cshtml" />
+    <Content Include="Views\Modul\ModulPrikaz.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Konfiguracija\" />
