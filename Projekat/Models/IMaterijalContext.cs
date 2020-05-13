@@ -110,6 +110,7 @@ namespace Projekat.Models
         /// <param name="entity">The entity.</param>
         /// <returns></returns>
         bool PostojiGlobalni(int? materijalId);
+        bool PostojiGlobalniZahtev(int? materijalId);
 
         /// <summary>
         /// Searches material by identifier.

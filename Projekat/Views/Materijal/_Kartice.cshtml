@@ -51,7 +51,7 @@
                 @if (this.User.IsInRole("LokalniUrednik") || this.User.IsInRole("Profesor"))
                 {
 
-                    if (!context.PostojiGlobalni(osiromaseni.materijalId))
+                    if (!context.PostojiGlobalni(osiromaseni.materijalId) && !context.PostojiGlobalniZahtev(osiromaseni.materijalId))
                     {
                         <a class="upgrade" href="#"><img style="width:12px;" src="~/Content/img/upgradeIco.png" /></a>;
                     }

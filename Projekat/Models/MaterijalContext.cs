@@ -190,6 +190,15 @@ namespace Projekat.Models
             }
             return false;
         }
+        public bool PostojiGlobalniZahtev(int? materijalId)
+        {
+            var zahtevi = this.globalniZahtevi.Where(x => x.materijalId == materijalId).ToList();
+            if (zahtevi.Count > 0)
+            {
+                return true;
+            }
+            return false;
+        }
 
         IQueryable<OsiromaseniMaterijali> IMaterijalContext.poModulu(int? modulId)
         {

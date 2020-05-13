@@ -35,9 +35,12 @@ $("#upgradeConfirm").on("click", function () {
             },
             success: function (result) {
                 $("#zahtevModal").modal('hide');
+                
                 if (result) {
                     alert("Uspesno podnet zahtev za postavljanje globalnog materijala");
+                    
                 }
+                location.reload();
                 $("#zahtevOpis").val("");
             }
         });

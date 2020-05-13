@@ -1,4 +1,4 @@
-﻿* {
+* {
     margin: 0;
     padding: 0;
 }
@@ -513,6 +513,9 @@ div.kartica div.karticaTekts {
 
         div.kartica div.karticaTekts div.kontrole a.delete {
             margin-left: 26px;
+        }
+        div.kartica div.karticaTekts div.kontrole a.upgrade {
+            margin-left: 13px;
         }
 
         div.kartica div.karticaTekts div.kontrole a {
