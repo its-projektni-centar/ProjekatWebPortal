@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
@@ -582,6 +582,7 @@
     <Content Include="Scripts\Modul\ProveraImenaIzmenaGlobalni.js" />
     <Content Include="Scripts\Modul\SnackBarDelete.js" />
     <Content Include="Scripts\Modul\SnackBarEdit.js" />
+    <Content Include="Scripts\Predmet\customDropdown.js" />
     <Content Include="Scripts\Smer\SnackBarCreate.js" />
     <Content Include="Scripts\Zahtev\zahtevDropdown.js" />
     <Content Include="Scripts\Zahtev\zahtevUpgrade.js" />
@@ -815,6 +816,7 @@
     <Content Include="Views\Materijal\_ZahtevDropdown.cshtml" />
     <Content Include="Views\Modul\ModulPrikaz.cshtml" />
     <Content Include="Views\Skola\SkolaPrikaz.cshtml" />
+    <Content Include="Views\Predmet\_customDropdown.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Konfiguracija\" />

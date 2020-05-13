@@ -16,6 +16,11 @@ namespace Projekat.Controllers
     {
         private IMaterijalContext context;
 
+        public PredmetController()
+        {
+            context = new MaterijalContext();
+        }
+
         // GET: Predmet
         /// <summary>
         /// Index akcija
@@ -32,12 +37,21 @@ namespace Projekat.Controllers
         /// <returns></returns>
         [HttpGet]
         [Authorize(Roles = "SuperAdministrator,LokalniUrednik")]
-        public ActionResult DodajPredmet()
+        public ActionResult DodajPredmet(int? smerId)
         {
-            context = new MaterijalContext();
             DodajPremetViewModel viewModel = new DodajPremetViewModel();
-            viewModel.smerovi = context.smerovi.ToList();
+            viewModel.skole = context.skole.ToList();
             viewModel.tip = 1;
+            if (smerId == null)
+            {
+                var smerIds = context.smeroviPoSkolama.Where(x => x.skolaId == context.skole.FirstOrDefault().IdSkole).Select(x => x.smerId).ToList();
+                viewModel.smerovi = context.smerovi.Where(x => smerIds.Contains(x.smerId)).ToList();   
+            }
+            else
+            {
+                viewModel.smerovi = context.smerovi.Where(x => x.smerId == smerId).ToList();
+                return PartialView("_customDropdown", viewModel);
+            }
 
             return View("DodajPredmet", viewModel);
         }
@@ -51,8 +65,6 @@ namespace Projekat.Controllers
         [Authorize(Roles = "SuperAdministrator,LokalniUrednik")]
         public ActionResult DodajPredmet(DodajPremetViewModel viewModel)
         {
-            context = new MaterijalContext();
-
             try
             {
                 viewModel.predmet.tipId = 1;
@@ -179,14 +191,12 @@ namespace Projekat.Controllers
             {
                 return View("FileNotFound");
             }
-            
+
             if (smerId != 0)
             {
-
             }
             var predPoSmer = context.predmetiPoSmeru.Where(x => x.smerId == smerId).Select(x => x.predmetId);
             List<PredmetModel> predmeti = context.predmeti.Where(x => predPoSmer.Contains(x.predmetId) && x.Razred == razredPOM).ToList();
-
 
             PredmetPoSmeruViewModel predmetiPoSmeru = new PredmetPoSmeruViewModel
             {

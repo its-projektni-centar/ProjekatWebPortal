@@ -11,7 +11,9 @@
     {
         <h2>Novi predmet</h2>
         <div id="dropDownovi">
-            @Html.DropDownListFor(m => m.smerIds, new SelectList(Model.smerovi, "smerId", "smerNaziv"), new { @class = "select2smerovi", @multiple = "multiple", @id = "smerovi" })
+            <div id="_predmetiNaSmeru">
+                @{ Html.RenderPartial("_customDropdown", Model); }
+            </div>
         </div>
 
         <label class="matDesignLabel">Razred</label>
