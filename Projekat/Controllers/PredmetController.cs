@@ -37,23 +37,32 @@ namespace Projekat.Controllers
         /// <returns></returns>
         [HttpGet]
         [Authorize(Roles = "SuperAdministrator,LokalniUrednik")]
-        public ActionResult DodajPredmet(int? smerId)
+        public ActionResult DodajPredmet(int? skolaID)
         {
             DodajPremetViewModel viewModel = new DodajPremetViewModel();
             viewModel.skole = context.skole.ToList();
             viewModel.tip = 1;
-            if (smerId == null)
+            if (skolaID == null)
             {
                 var smerIds = context.smeroviPoSkolama.Where(x => x.skolaId == context.skole.FirstOrDefault().IdSkole).Select(x => x.smerId).ToList();
-                viewModel.smerovi = context.smerovi.Where(x => smerIds.Contains(x.smerId)).ToList();   
+                viewModel.smerovi = context.smerovi.Where(x => smerIds.Contains(x.smerId)).ToList();
             }
             else
             {
-                viewModel.smerovi = context.smerovi.Where(x => x.smerId == smerId).ToList();
+                var smerIds = context.smeroviPoSkolama.Where(x => x.skolaId == skolaID).Select(x => x.smerId).ToList();
+                viewModel.smerovi = context.smerovi.Where(x => smerIds.Contains(x.smerId)).ToList();
                 return PartialView("_customDropdown", viewModel);
             }
 
             return View("DodajPredmet", viewModel);
+        }
+
+        public JsonResult GetSmerovi(int skolaID)
+        {
+            var smerIds = context.smeroviPoSkolama.Where(x => x.skolaId == skolaID).Select(x => x.smerId).ToList();
+            var viewModel = context.smerovi.Where(x => smerIds.Contains(x.smerId)).ToList();
+
+            return Json(viewModel, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>

@@ -1,21 +1,29 @@
-﻿$(document).ready(function () {
-    $(".skole").change( function () {
+﻿$(".skole").change(function () {
+    var skolaID = $(".skole").val();
 
-        var skolaId = $(".skole").val();
+    $.ajax({
+        method: 'GET',
+        url: '/Predmet/GetSmerovi',
+        data: {
+            skolaID: skolaID,
+        },
+        success: function (data) {
+            var $select = $('.smer');
+            $select.html('');
 
-        $.ajax({
-            method: 'GET',
-            url: '/Predmet/DodajPredmet',
-            data: {
-                skolaId: skolaId,
-            },
-            success: function (data) {
-                $('#_predmetiNaSmeru').html('');
-                $('#_predmetiNaSmeru').html(data);
-            },
-            error: function () {
-                console.log("ne valja");
+            var options = '';
+            if (data.length > 0) {
+                $.each(data, function (i, data) {
+                    options += '<option value="' + data.smerId + '">' + data.smerNaziv + '</option>';
+                })
             }
-        });
-    })
+            else {
+                options = '<option value="Select">Nema smerova u skoli</option>';
+            }
+            $select.html(options);
+        },
+        error: function () {
+            console.log("ne valja");
+        }
+    });
 });
