@@ -66,7 +66,8 @@ namespace Projekat
             bundles.Add(new ScriptBundle("~/bundles/predmet_prikaz").Include(
              "~/Scripts/Predmet/editPredmeta.js",
              "~/Scripts/Predmet/modalOpisPredmet.js",
-             "~/Scripts/Predmet/validacijaEditPredmeta.js"
+             "~/Scripts/Predmet/validacijaEditPredmeta.js",
+             "~/Scripts/Predmet/validacijaNovogPredmeta.js"
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/novi_predmet").Include(
