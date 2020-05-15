@@ -583,7 +583,7 @@
     <Content Include="Scripts\Modul\ProveraImenaIzmenaGlobalni.js" />
     <Content Include="Scripts\Modul\SnackBarDelete.js" />
     <Content Include="Scripts\Modul\SnackBarEdit.js" />
-    <Content Include="Scripts\Predmet\customDropdown.js" />
+    <Content Include="Scripts\Predmet\smerPoSkoli.js" />
     <Content Include="Scripts\Smer\SnackBarCreate.js" />
     <Content Include="Scripts\Zahtev\zahtevDropdown.js" />
     <Content Include="Scripts\Zahtev\zahtevUpgrade.js" />

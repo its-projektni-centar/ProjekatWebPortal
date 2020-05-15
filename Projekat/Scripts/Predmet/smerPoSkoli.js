@@ -8,7 +8,7 @@
             skolaID: skolaID,
         },
         success: function (data) {
-            var $select = $('.smer');
+            var $select = $('.select2smerovi');
             $select.html('');
 
             var options = '';

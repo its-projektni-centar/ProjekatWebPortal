@@ -1,4 +1,4 @@
 ﻿@model Projekat.ViewModels.DodajPremetViewModel
 
 @Html.DropDownListFor(m => m.skolaId, new SelectList(Model.skole, "IdSkole", "NazivSkole"), new { @class = "skole", @id = "'" + @Model.skolaId + "'" })
-@Html.DropDownListFor(m => m.smerIds, new SelectList(Model.smerovi, "smerId", "smerNaziv"), new { @class = "select2smerovi smer", @multiple = "multiple", @id = "smerovi" })
+@Html.DropDownListFor(m => m.smerIds, new SelectList(Model.smerovi, "smerId", "smerNaziv"), new { @class = "select2smerovi", @multiple = "multiple", @id = "smerovi" })

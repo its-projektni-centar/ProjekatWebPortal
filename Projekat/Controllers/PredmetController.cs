@@ -1,4 +1,4 @@
-﻿using Projekat.Models;
+using Projekat.Models;
 using Projekat.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -37,22 +37,13 @@ namespace Projekat.Controllers
         /// <returns></returns>
         [HttpGet]
         [Authorize(Roles = "SuperAdministrator,LokalniUrednik")]
-        public ActionResult DodajPredmet(int? skolaID)
+        public ActionResult DodajPredmet()
         {
             DodajPremetViewModel viewModel = new DodajPremetViewModel();
-            viewModel.skole = context.skole.ToList();
             viewModel.tip = 1;
-            if (skolaID == null)
-            {
-                var smerIds = context.smeroviPoSkolama.Where(x => x.skolaId == context.skole.FirstOrDefault().IdSkole).Select(x => x.smerId).ToList();
-                viewModel.smerovi = context.smerovi.Where(x => smerIds.Contains(x.smerId)).ToList();
-            }
-            else
-            {
-                var smerIds = context.smeroviPoSkolama.Where(x => x.skolaId == skolaID).Select(x => x.smerId).ToList();
-                viewModel.smerovi = context.smerovi.Where(x => smerIds.Contains(x.smerId)).ToList();
-                return PartialView("_customDropdown", viewModel);
-            }
+            viewModel.skole = context.skole.ToList();
+            var smerIds = context.smeroviPoSkolama.Where(x => x.skolaId == context.skole.FirstOrDefault().IdSkole).Select(x => x.smerId).ToList();
+            viewModel.smerovi = context.smerovi.Where(x => smerIds.Contains(x.smerId)).ToList();
 
             return View("DodajPredmet", viewModel);
         }
