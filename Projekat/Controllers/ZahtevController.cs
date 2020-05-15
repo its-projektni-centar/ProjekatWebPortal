@@ -224,5 +224,22 @@ namespace Projekat.Controllers
             catch (Exception) { }
             return RedirectToAction("PrikazZahteva");
         }
+        //inicijalizacija dropdowna za kreiranje zahteva
+        [HttpGet]
+        public JsonResult DropDownInitiate()
+        {
+            var predmeti = context.predmeti.Where(x => x.tipId == 2).ToList();
+            var prviPredmet = predmeti.First();
+            var moduli = context.moduli.Where(x => x.predmetId == prviPredmet.predmetId).ToList();
+            var result = new { predmeti = predmeti, moduli = moduli };
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        //on change popunjava modul select
+        [HttpGet]
+        public JsonResult OnChangePopulate(int predmetId)
+        {
+            var moduli = context.moduli.Where(x => x.predmetId == predmetId).ToList();
+            return Json(moduli, JsonRequestBehavior.AllowGet);
+        }
     }
 }

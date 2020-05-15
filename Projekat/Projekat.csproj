@@ -464,6 +464,7 @@
     <Content Include="Content\css\stil.css" />
     <Content Include="Content\css\TabelaListaKorisnika.css" />
     <Content Include="Content\css\UrednikOdgovor.css" />
+    <Content Include="Content\css\ZahtevZaGlobalni.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\img\08_comment-512.png" />
     <Content Include="Content\img\1280px-Line-style-icons-chat.svg.png" />
