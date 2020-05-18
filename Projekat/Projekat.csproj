@@ -370,6 +370,10 @@
     <Compile Include="Migrations\MaterijalContext\202005130816299_SmeroviPoSkolama.Designer.cs">
       <DependentUpon>202005130816299_SmeroviPoSkolama.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\MaterijalContext\202005180856249_PredlozeniModul.cs" />
+    <Compile Include="Migrations\MaterijalContext\202005180856249_PredlozeniModul.Designer.cs">
+      <DependentUpon>202005180856249_PredlozeniModul.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\MaterijalContext\MaterijalConfiguration.cs" />
     <Compile Include="Migrations\VestiContext\201808170921538_Dodavanje_Vesti_U_Bazu.cs" />
     <Compile Include="Migrations\VestiContext\201808170921538_Dodavanje_Vesti_U_Bazu.Designer.cs">
@@ -924,6 +928,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\MaterijalContext\202005130816299_SmeroviPoSkolama.resx">
       <DependentUpon>202005130816299_SmeroviPoSkolama.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\MaterijalContext\202005180856249_PredlozeniModul.resx">
+      <DependentUpon>202005180856249_PredlozeniModul.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\VestiContext\201808170921538_Dodavanje_Vesti_U_Bazu.resx">
       <DependentUpon>201808170921538_Dodavanje_Vesti_U_Bazu.cs</DependentUpon>

@@ -104,13 +104,15 @@ $('#predmetiSelect').change(function () {
 $("#upgradeConfirm").on("click", function () {
     var id = $("#hiddenMaterijalId").val();
     var opis = $("#zahtevOpis").val();
+    var modulId = $("#moduliSelect").val();
     if (validate()) {
         $.ajax({
             url: "/Zahtev/UpgradeMaterijal",
             method: "POST",
             data: {
                 Id: id,
-                opis: opis
+                opis: opis,
+                modulId : modulId
             },
             success: function (result) {
                 $("#zahtevModal").modal('hide');

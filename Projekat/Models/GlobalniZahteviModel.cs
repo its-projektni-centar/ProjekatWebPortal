@@ -17,5 +17,7 @@ namespace Projekat.Models
         public int materijalId { get; set; }
 
         public MaterijalModel MaterijalModel { get; set; }
+
+        public int? predlozeniModul { get; set; }
     }
 }
