@@ -55,8 +55,8 @@ namespace Projekat
 
             bundles.Add(new ScriptBundle("~/bundles/upload_materijal").Include(
             "~/Scripts/Materijal/uploadMaterijal.js",
+            "~/Scripts/Materijal/dropdownovi.js"
             //"~/Scripts/Materijal/uploadMaterijal.js",
-            "~/Scripts/customDropdown.js"
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/predmet_prikaz").Include(

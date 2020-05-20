@@ -16,6 +16,14 @@ namespace Projekat.ViewModels
         /// </value>
         public MaterijalModel Materijal { get; set; }
 
+        public List<SkolaModel> skole { get; set; }
+
+        public int skolaId { get; set; }
+
+        public List<SmerModel> SmeroviPoSkolama { get; set; }
+
+
+
         public MaterijalProfesorModel MaterijalProfesor { get; set; }
 
         /// <summary>
