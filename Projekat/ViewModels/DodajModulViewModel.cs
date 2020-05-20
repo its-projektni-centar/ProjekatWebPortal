@@ -1,8 +1,5 @@
-﻿using System;
+﻿using Projekat.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Projekat.Models;
 
 namespace Projekat.ViewModels
 {
@@ -32,8 +29,6 @@ namespace Projekat.ViewModels
         /// </value>
         public List<int> modulIds { get; set; } //Za upisivanje u bazu
 
-        public IEnumerable<SmerModel> Smerovi { get; set; }
-
         /// <summary>
         /// Gets or sets the predmet po smeru.
         /// </summary>
@@ -43,6 +38,12 @@ namespace Projekat.ViewModels
         public IEnumerable<PredmetModel> PredmetPoSmeru { get; set; }
 
         public IEnumerable<PredmetModel> Predmeti { get; set; }
+        public IEnumerable<SmerModel> Smerovi { get; set; }
+
+        public List<SmerModel> SmeroviPoSkolama { get; set; }
+        public IEnumerable<SkolaModel> Skole { get; set; }
+
+        public int skolaId { get; set; }
         public int smerId { get; set; }
 
         /// <summary>

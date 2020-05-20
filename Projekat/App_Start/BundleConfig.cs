@@ -58,10 +58,6 @@ namespace Projekat
             //"~/Scripts/Materijal/uploadMaterijal.js",
             "~/Scripts/customDropdown.js"
             ));
-            bundles.Add(new ScriptBundle("~/bundles/DodajModul").Include(
-            //"~/Scripts/Materijal/uploadMaterijal.js",
-            "~/Scripts//Modul/customDropdownModul.js"
-            ));
 
             bundles.Add(new ScriptBundle("~/bundles/predmet_prikaz").Include(
              "~/Scripts/Predmet/editPredmeta.js",
@@ -77,11 +73,13 @@ namespace Projekat
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/novi_modul").Include(
-             "~/Scripts/Modul/validacijaNovogModula.js"
+             "~/Scripts/Modul/validacijaNovogModula.js",
+            "~/Scripts//Modul/customDropdownModul.js"
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/edit_modul").Include(
-             "~/Scripts/Modul/validacijaEditModula.js"
+             "~/Scripts/Modul/validacijaEditModula.js",
+            "~/Scripts//Modul/customDropdownModul.js"
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/smer_prikaz").Include(

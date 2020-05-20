@@ -39,6 +39,7 @@ $('.upgrade').click(function () {
             var options = '';
             var predmet = result.predmeti;
             var modul = result.moduli;
+
             if (predmet.length > 0) {
                 $.each(predmet, function (i, predmet) {
                     options += '<option value="' + predmet.predmetId + '">' + predmet.predmetNaziv + '</option>';
@@ -47,7 +48,7 @@ $('.upgrade').click(function () {
             else {
                 options = '<option value="Select">Nema globalnih predmeta.</option>';
             }
-            
+
             $predmeti.html(options);
             options = '';
             if (modul.length > 0) {
@@ -61,8 +62,6 @@ $('.upgrade').click(function () {
 
             $moduli.html(options);
         }
-            
-
     })
     $("#zahtevModal").modal('show');
 })
@@ -112,15 +111,13 @@ $("#upgradeConfirm").on("click", function () {
             data: {
                 Id: id,
                 opis: opis,
-                modulId : modulId
+                modulId: modulId
             },
             success: function (result) {
                 $("#zahtevModal").modal('hide');
-                
+
                 if (result) {
                     sessionStorage.setItem('zahtevSnack', true);
-                    
-                    
                 }
                 location.reload();
                 $("#zahtevOpis").val("");
