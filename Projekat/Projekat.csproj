@@ -583,7 +583,6 @@
     <Content Include="Scripts\Korisnik\register.js" />
     <Content Include="Scripts\Korisnik\SakrijGodine.js" />
     <Content Include="Scripts\Materijal\dropdownovi.js" />
-    <Content Include="Scripts\Materijal\PredlogDropdown.js" />
     <Content Include="Scripts\Modul\ProveraImenaDodajGlobalni.js" />
     <Content Include="Scripts\Modul\ProveraImenaIzmenaGlobalni.js" />
     <Content Include="Scripts\Modul\SnackBarDelete.js" />
