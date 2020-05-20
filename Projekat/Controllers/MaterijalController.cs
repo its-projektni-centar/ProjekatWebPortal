@@ -123,13 +123,12 @@ namespace Projekat.Controllers
             {
                 return View("_Kartice", vm);
             }
-            
+
             return View("MaterijaliPrikaz", vm);
         }
 
         public JsonResult GetSmerovi(int skolaID)
         {
-
             MaterijalUploadViewModel viewModel = new MaterijalUploadViewModel
             {
                 tipoviMaterijala = context.tipMaterijala.ToList(),
@@ -139,10 +138,10 @@ namespace Projekat.Controllers
                 Predmeti = context.predmeti.ToList(),
                 Moduli = context.moduli.ToList()
             };
-            
+
             var smeroviPoSkoli = context.smeroviPoSkolama.Where(x => x.skolaId == skolaID).Select(x => x.smerId).ToList();
             viewModel.SmeroviPoSkolama = context.smerovi.Where(x => smeroviPoSkoli.Contains(x.smerId)).ToList();
-            
+
             if (viewModel.SmeroviPoSkolama.Count > 0)
             {
                 int id = viewModel.SmeroviPoSkolama.FirstOrDefault().smerId;
@@ -154,7 +153,7 @@ namespace Projekat.Controllers
 
                 viewModel.ModulPoPredmetu = context.moduli.Where(x => x.predmetId == idP).ToList();
 
-                if(viewModel.ModulPoPredmetu.Count() < 1)
+                if (viewModel.ModulPoPredmetu.Count() < 1)
                 {
                     viewModel.ModulPoPredmetu = new List<ModulModel>();
                 }
@@ -162,7 +161,6 @@ namespace Projekat.Controllers
                 var res = new { smerovi = viewModel.SmeroviPoSkolama, predmeti = viewModel.PredmetPoSmeru, moduli = viewModel.ModulPoPredmetu };
 
                 return Json(res, JsonRequestBehavior.AllowGet);
-
             }
             viewModel.ModulPoPredmetu = new List<ModulModel>();
             viewModel.PredmetPoSmeru = new List<PredmetModel>();
@@ -173,7 +171,6 @@ namespace Projekat.Controllers
 
         public JsonResult GetPredmeti(int smerID)
         {
-
             MaterijalUploadViewModel viewModel = new MaterijalUploadViewModel
             {
                 tipoviMaterijala = context.tipMaterijala.ToList(),
@@ -184,36 +181,55 @@ namespace Projekat.Controllers
                 Moduli = context.moduli.ToList()
             };
 
-               
+            var predmetiposmeru = context.predmetiPoSmeru.Where(x => x.smerId == smerID).Select(c => c.predmetId).ToList();
+            viewModel.PredmetPoSmeru = viewModel.Predmeti.Where(x => predmetiposmeru.Contains(x.predmetId)).ToList();
 
-                var predmetiposmeru = context.predmetiPoSmeru.Where(x => x.smerId == smerID).Select(c => c.predmetId).ToList();
-                viewModel.PredmetPoSmeru = viewModel.Predmeti.Where(x => predmetiposmeru.Contains(x.predmetId)).ToList();
-
-            if (viewModel.PredmetPoSmeru.Count() < 1)
+            if (viewModel.PredmetPoSmeru.Count < 1)
             {
                 viewModel.PredmetPoSmeru = new List<PredmetModel>();
                 viewModel.ModulPoPredmetu = new List<ModulModel>();
 
-                var res1 = new { smerovi = viewModel.SmeroviPoSkolama, predmeti = viewModel.PredmetPoSmeru, moduli = viewModel.ModulPoPredmetu };
-                return Json(res1, JsonRequestBehavior.AllowGet);
+                var result = new { predmeti = viewModel.PredmetPoSmeru, moduli = viewModel.ModulPoPredmetu };
+
+                return Json(result, JsonRequestBehavior.AllowGet);
             }
 
-                int idP = viewModel.PredmetPoSmeru.FirstOrDefault().predmetId;
+            int idP = viewModel.PredmetPoSmeru.FirstOrDefault().predmetId;
 
+            viewModel.ModulPoPredmetu = context.moduli.Where(x => x.predmetId == idP).ToList();
 
+            if (viewModel.ModulPoPredmetu.Count() < 1)
+            {
+                viewModel.ModulPoPredmetu = new List<ModulModel>();
+            }
 
+            var res = new { predmeti = viewModel.PredmetPoSmeru, moduli = viewModel.ModulPoPredmetu };
 
-                viewModel.ModulPoPredmetu = context.moduli.Where(x => x.predmetId == idP).ToList();
-            
+            return Json(res, JsonRequestBehavior.AllowGet);
+        }
 
-                if (viewModel.ModulPoPredmetu.Count() < 1)
-                {
-                    viewModel.ModulPoPredmetu = new List<ModulModel>();
-                }
+        public JsonResult GetModuli(int modulID)
+        {
+            MaterijalUploadViewModel viewModel = new MaterijalUploadViewModel
+            {
+                tipoviMaterijala = context.tipMaterijala.ToList(),
+                nameneMaterijala = context.nameneMaterijala.ToList(),
+                skole = context.skole.ToList(),
+                Smerovi = context.smerovi.ToList(),
+                Predmeti = context.predmeti.ToList(),
+                Moduli = context.moduli.ToList()
+            };
 
-                var res = new { smerovi = viewModel.SmeroviPoSkolama, predmeti = viewModel.PredmetPoSmeru, moduli = viewModel.ModulPoPredmetu };
+            viewModel.ModulPoPredmetu = context.moduli.Where(x => x.predmetId == modulID).ToList();
 
-                return Json(res, JsonRequestBehavior.AllowGet);
+            if (viewModel.ModulPoPredmetu.Count() < 1)
+            {
+                viewModel.ModulPoPredmetu = new List<ModulModel>();
+            }
+
+            var res = new { moduli = viewModel.ModulPoPredmetu };
+
+            return Json(res, JsonRequestBehavior.AllowGet);
         }
 
         //kod ove akcije treba dodati punjenje tabele namena materijala
@@ -245,7 +261,7 @@ namespace Projekat.Controllers
                 viewModel.SmeroviPoSkolama = context.smerovi.Where(x => smeroviPoSkoli.Contains(x.smerId)).ToList();
                 int id = viewModel.SmeroviPoSkolama.First().smerId;
                 var predmetiposmeru = context.predmetiPoSmeru.Where(x => x.smerId == id).Select(c => c.predmetId).ToList();
-                viewModel.PredmetPoSmeru = viewModel.Predmeti.Where(x => predmetiposmeru.Contains(x.predmetId));
+                viewModel.PredmetPoSmeru = viewModel.Predmeti.Where(x => predmetiposmeru.Contains(x.predmetId)).ToList();
 
                 int idP = viewModel.PredmetPoSmeru.FirstOrDefault().predmetId;
 
@@ -257,10 +273,6 @@ namespace Projekat.Controllers
             }
             catch (ArgumentOutOfRangeException) { return new HttpNotFoundResult("Nema unetih smerova"); }
         }
-
-
-
-
 
         //kod ove akcije treba dodati punjenje tabele namena materijala
         /// <summary>

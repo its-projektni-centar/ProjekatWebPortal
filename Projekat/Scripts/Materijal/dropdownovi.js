@@ -1,4 +1,8 @@
-﻿$(".skole").change(function () {
+﻿$(document).ready(function () {
+    $(".skole").change();
+});
+
+$(".skole").change(function () {
     var skolaID = $(".skole").val();
 
     $.ajax({
@@ -76,11 +80,16 @@ $(".smerovi").change(function () {
         success: function (result) {
             var $predmeti = $('.predmeti');
             $predmeti.html('');
+            var $moduli = $('.moduli');
+            $moduli.html('');
+
+            var predmeti = result.predmeti;
+            var moduli = result.moduli;
 
             var options = '';
-            if (result.length > 0) {
-                $.each(result, function (i, result) {
-                    options += '<option value="' + result.predmetId + '">' + result.predmetNaziv + '</option>';
+            if (predmeti.length > 0) {
+                $.each(predmeti, function (i, predmeti) {
+                    options += '<option value="' + predmeti.predmetId + '">' + predmeti.predmetNaziv + '</option>';
                 })
                 $('#postavi').prop('disabled', false);
             }
@@ -88,8 +97,53 @@ $(".smerovi").change(function () {
                 options = '<option value="Select">Nema predmeta na smeru</option>';
                 $('#postavi').prop('disabled', true);
             }
-
             $predmeti.html(options);
+
+            options = '';
+            if (moduli.length > 0) {
+                $.each(moduli, function (i, moduli) {
+                    options += '<option value="' + moduli.modulId + '">' + moduli.modulNaziv + '</option>';
+                })
+                $('#postavi').prop('disabled', false);
+            }
+            else {
+                options = '<option value="Select">Nema modula na predmetu</option>';
+                $('#postavi').prop('disabled', true);
+            }
+            $moduli.html(options);
+        },
+        error: function () {
+            console.log("ne valja");
+        }
+    });
+});
+
+$(".predmeti").change(function () {
+    var modulID = $(".predmeti").val();
+
+    $.ajax({
+        method: 'GET',
+        url: '/Materijal/GetModuli',
+        data: {
+            modulID: modulID,
+        },
+        success: function (result) {
+            var $moduli = $('.moduli');
+            $moduli.html('');
+            var moduli = result.moduli;
+
+            options = '';
+            if (moduli.length > 0) {
+                $.each(moduli, function (i, moduli) {
+                    options += '<option value="' + moduli.modulId + '">' + moduli.modulNaziv + '</option>';
+                })
+                $('#postavi').prop('disabled', false);
+            }
+            else {
+                options = '<option value="Select">Nema modula na predmetu</option>';
+                $('#postavi').prop('disabled', true);
+            }
+            $moduli.html(options);
         },
         error: function () {
             console.log("ne valja");

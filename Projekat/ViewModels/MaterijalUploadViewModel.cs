@@ -22,8 +22,6 @@ namespace Projekat.ViewModels
 
         public List<SmerModel> SmeroviPoSkolama { get; set; }
 
-
-
         public MaterijalProfesorModel MaterijalProfesor { get; set; }
 
         /// <summary>
@@ -64,7 +62,7 @@ namespace Projekat.ViewModels
         /// <value>
         /// The predmet po smeru.
         /// </value>
-        public IEnumerable<PredmetModel> PredmetPoSmeru { get; set; }
+        public List<PredmetModel> PredmetPoSmeru { get; set; }
 
         /// <summary>
         /// Gets or sets the moduli.
@@ -80,7 +78,7 @@ namespace Projekat.ViewModels
         /// <value>
         /// The modul po predmetu.
         /// </value>
-        public IEnumerable<ModulModel> ModulPoPredmetu { get; set; }
+        public List<ModulModel> ModulPoPredmetu { get; set; }
 
         /// <summary>
         /// Gets or sets the smer identifier.
