@@ -9,6 +9,14 @@ namespace Projekat.ViewModels
     public class PredmetPoSmeruViewModel
     {
         /// <summary>
+        /// Gets or sets the smerovi.
+        /// </summary>
+        /// <value>
+        /// The smerovi.
+        /// </value>
+        public DodajPremetViewModel viewModel { get; set; }
+
+        /// <summary>
         /// Gets or sets the predmeti.
         /// </summary>
         /// <value>
@@ -31,6 +39,7 @@ namespace Projekat.ViewModels
         /// The smerovi identifier.
         /// </value>
         public List<int> smeroviId { get; set; }
+
         /// <summary>
         /// Gets or sets the smer identifier.
         /// </summary>
@@ -38,6 +47,7 @@ namespace Projekat.ViewModels
         /// The smer identifier.
         /// </value>
         public int smerId { get; set; }
+
         /// <summary>
         /// Gets or sets the predmet identifier.
         /// </summary>
@@ -45,6 +55,7 @@ namespace Projekat.ViewModels
         /// The predmet identifier.
         /// </value>
         public int predmetId { get; set; }
+
         /// <summary>
         /// Gets or sets the predmet naziv.
         /// </summary>
@@ -52,6 +63,7 @@ namespace Projekat.ViewModels
         /// The predmet naziv.
         /// </value>
         public string predmetNaziv { get; set; }
+
         /// <summary>
         /// Gets or sets the predmet opis.
         /// </summary>

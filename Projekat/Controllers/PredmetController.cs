@@ -102,7 +102,7 @@ namespace Projekat.Controllers
         /// <returns></returns>
         [HttpPost]
         [Authorize(Roles = "SuperAdministrator,LokalniUrednik, GlobalniUrednik")]
-        public ActionResult Edit(int smerId, List<int> smeroviId, string predmetNaziv, string predmetOpis, int predmetId, int Razred)
+        public ActionResult Edit(int smerId, DodajPremetViewModel viewmodel, string predmetNaziv, string predmetOpis, int predmetId, int Razred)
         {
             context = new MaterijalContext();
 
@@ -128,7 +128,7 @@ namespace Projekat.Controllers
 
             context.SaveChanges();
 
-            foreach (int smerZaUbacivanje in smeroviId)
+            foreach (int smerZaUbacivanje in viewmodel.smerIds)
             {
                 PredmetPoSmeru ZAUBACIVANJE = new PredmetPoSmeru();
 
@@ -204,6 +204,12 @@ namespace Projekat.Controllers
                 smerovi = smerovi,
                 smerId = smerId
             };
+            predmetiPoSmeru.viewModel = new DodajPremetViewModel();
+            predmetiPoSmeru.viewModel.tip = 1;
+            predmetiPoSmeru.viewModel.skole = context.skole.ToList();
+            var smerIds = context.smeroviPoSkolama.Where(x => x.skolaId == context.skole.FirstOrDefault().IdSkole).Select(x => x.smerId).ToList();
+            predmetiPoSmeru.viewModel.smerovi = context.smerovi.Where(x => smerIds.Contains(x.smerId)).ToList();
+
             return View("PredmetiPrikaz", predmetiPoSmeru);
         }
     }
