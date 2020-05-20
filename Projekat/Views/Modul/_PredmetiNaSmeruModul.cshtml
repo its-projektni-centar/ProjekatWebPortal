@@ -1,5 +1,13 @@
 ﻿@model Projekat.ViewModels.DodajModulViewModel
-
-@Html.DropDownListFor(m => m.skolaId, new SelectList(Model.Skole, "IdSkole", "NazivSkole"), new { @class = "skole", @id = "'" + @Model.skolaId + "'" })
-@Html.DropDownListFor(m => m.smerId, new SelectList(Model.SmeroviPoSkolama, "smerId", "smerNaziv"), new { @class = "smerovi", @id = "'" + @Model.smerId + "'" })
-@Html.DropDownListFor(m => m.modul.predmetId, new SelectList(Model.PredmetPoSmeru, "predmetId", "predmetNaziv"), new { @class = "predmeti" })
+<div class="dropdown-wrap">
+    <label >Skola</label>
+    @Html.DropDownListFor(m => m.skolaId, new SelectList(Model.Skole, "IdSkole", "NazivSkole"), new { @class = "skole izgledDropdown", @id = "'" + @Model.skolaId + "'" })
+</div>
+<div class="dropdown-wrap">
+    <label>Smer</label>
+    @Html.DropDownListFor(m => m.smerId, new SelectList(Model.SmeroviPoSkolama, "smerId", "smerNaziv"), new { @class = "smerovi izgledDropdown", @id = "'" + @Model.smerId + "'" })
+</div>
+<div class="dropdown-wrap">
+    <label>Predmet</label>
+    @Html.DropDownListFor(m => m.modul.predmetId, new SelectList(Model.PredmetPoSmeru, "predmetId", "predmetNaziv"), new { @class = "predmeti izgledDropdown" })
+</div>

@@ -454,6 +454,9 @@
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\datatables.min.css" />
     <Content Include="Content\css\detaljiKorisnika.css" />
+    <Content Include="Content\css\Materijalcss\dropdown.css" />
+    <Content Include="Content\css\Modulcss\dropdown.css" />
+    <Content Include="Content\css\Predmetcss\dropdownCreate.css" />
     <Content Include="Content\css\forma-novikorisnik.css" />
     <Content Include="Content\css\ForumStyles.css" />
     <Content Include="Content\css\izgled.css" />
@@ -461,10 +464,12 @@
     <Content Include="Content\css\listaKorisnikaStil.css" />
     <Content Include="Content\css\ModalnaSredjivanje.css" />
     <Content Include="Content\css\naprednaPretraga.css" />
+    <Content Include="Content\css\Predmetcss\dropdownPrikaz.css" />
     <Content Include="Content\css\reset.css" />
     <Content Include="Content\css\select2.min.css" />
     <Content Include="Content\css\select2izgled.css" />
     <Content Include="Content\css\simplebar.css" />
+    <Content Include="Content\css\Smercss\dropdownSmer.css" />
     <Content Include="Content\css\stil.css" />
     <Content Include="Content\css\TabelaListaKorisnika.css" />
     <Content Include="Content\css\UrednikOdgovor.css" />
