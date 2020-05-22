@@ -3,6 +3,7 @@ using Projekat.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Projekat.Controllers
@@ -37,14 +38,23 @@ namespace Projekat.Controllers
         /// <returns></returns>
         [HttpGet]
         [Authorize(Roles = "SuperAdministrator,LokalniUrednik")]
-        public ActionResult DodajPredmet()
+        public async Task<ActionResult> DodajPredmet()
         {
             DodajPremetViewModel viewModel = new DodajPremetViewModel();
             viewModel.tip = 1;
             viewModel.skole = context.skole.ToList();
             var smerIds = context.smeroviPoSkolama.Where(x => x.skolaId == context.skole.FirstOrDefault().IdSkole).Select(x => x.smerId).ToList();
-            viewModel.smerovi = context.smerovi.Where(x => smerIds.Contains(x.smerId)).ToList();
 
+            if (!this.User.IsInRole("SuperAdministrator"))
+            {
+                SkolaModel sk = await ApplicationUser.vratiSkoluModel(User.Identity.Name);
+                if (sk.IdSkole != 0)
+                {
+                    viewModel.skolaId = sk.IdSkole;
+                    smerIds = context.smeroviPoSkolama.Where(x => x.skolaId == viewModel.skolaId).Select(x => x.smerId).ToList();
+                }
+            }
+            viewModel.smerovi = context.smerovi.Where(x => smerIds.Contains(x.smerId)).ToList();
             return View("DodajPredmet", viewModel);
         }
 

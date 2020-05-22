@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace Projekat.Controllers
@@ -92,7 +93,7 @@ namespace Projekat.Controllers
 
         [HttpGet]
         [Authorize(Roles = "SuperAdministrator,LokalniUrednik")]
-        public ActionResult DodajModul()
+        public async Task<ActionResult> DodajModul()
         {
             DodajModulViewModel viewModel = new DodajModulViewModel
             {
@@ -104,6 +105,14 @@ namespace Projekat.Controllers
             try
             {
                 var skId = viewModel.Skole.ToList()[0].IdSkole;
+                if (!this.User.IsInRole("SuperAdministrator"))
+                {
+                    SkolaModel sk = await ApplicationUser.vratiSkoluModel(User.Identity.Name);
+                    if (sk.IdSkole > 0)
+                    {
+                        skId = sk.IdSkole;
+                    }
+                }
                 var smeroviPoSkoli = context.smeroviPoSkolama.Where(x => x.skolaId == skId).Select(x => x.smerId).ToList();
                 viewModel.SmeroviPoSkolama = context.smerovi.Where(x => smeroviPoSkoli.Contains(x.smerId)).ToList();
                 int id = viewModel.SmeroviPoSkolama.First().smerId;
@@ -260,7 +269,7 @@ namespace Projekat.Controllers
 
         [HttpGet]
         [Authorize(Roles = "SuperAdministrator, LokalniUrednik")]
-        public ActionResult EditModul(int id, int? smerId)
+        public async Task<ActionResult> EditModul(int id, int? smerId)
         {
             ModulModel modul = context.moduli.Where(x => x.modulId == id).Single();
             DodajModulViewModel viewModel = new DodajModulViewModel
@@ -273,6 +282,14 @@ namespace Projekat.Controllers
             try
             {
                 var skId = viewModel.Skole.ToList()[0].IdSkole;
+                if (!this.User.IsInRole("SuperAdministrator"))
+                {
+                    SkolaModel sk = await ApplicationUser.vratiSkoluModel(User.Identity.Name);
+                    if (sk.IdSkole > 0)
+                    {
+                        skId = sk.IdSkole;
+                    }
+                }
                 var smeroviPoSkoli = context.smeroviPoSkolama.Where(x => x.skolaId == skId).Select(x => x.smerId).ToList();
                 viewModel.SmeroviPoSkolama = context.smerovi.Where(x => smeroviPoSkoli.Contains(x.smerId)).ToList();
                 int smerid = viewModel.SmeroviPoSkolama.First().smerId;

@@ -1,8 +1,16 @@
 ﻿@model Projekat.ViewModels.DodajModulViewModel
-<div class="dropdown-wrap">
-    <label >Skola</label>
-    @Html.DropDownListFor(m => m.skolaId, new SelectList(Model.Skole, "IdSkole", "NazivSkole"), new { @class = "skole izgledDropdown", @id = "'" + @Model.skolaId + "'" })
-</div>
+@if (this.User.IsInRole("SuperAdministrator"))
+{
+
+    <div class="dropdown-wrap">
+        <label>Skola</label>
+        @Html.DropDownListFor(m => m.skolaId, new SelectList(Model.Skole, "IdSkole", "NazivSkole"), new { @class = "skole izgledDropdown", @id = "'" + @Model.skolaId + "'" })
+    </div>
+}
+else
+{
+    @Html.HiddenFor(m => m.skolaId)
+}
 <div class="dropdown-wrap">
     <label>Smer</label>
     @Html.DropDownListFor(m => m.smerId, new SelectList(Model.SmeroviPoSkolama, "smerId", "smerNaziv"), new { @class = "smerovi izgledDropdown", @id = "'" + @Model.smerId + "'" })

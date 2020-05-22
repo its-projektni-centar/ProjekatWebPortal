@@ -240,7 +240,7 @@ namespace Projekat.Controllers
         /// <returns></returns>
         [HttpGet]
         [Authorize(Roles = "SuperAdministrator,LokalniUrednik,Profesor")]
-        public ActionResult UploadMaterijal()
+        public async Task<ActionResult> UploadMaterijal()
         {
             context = new MaterijalContext();
 
@@ -257,6 +257,14 @@ namespace Projekat.Controllers
             try
             {
                 var skId = viewModel.skole.ToList()[0].IdSkole;
+                if (!this.User.IsInRole("SuperAdministrator"))
+                {
+                    SkolaModel sk = await ApplicationUser.vratiSkoluModel(User.Identity.Name);
+                    if (sk.IdSkole > 0)
+                    {
+                        skId = sk.IdSkole;
+                    }
+                }
                 var smeroviPoSkoli = context.smeroviPoSkolama.Where(x => x.skolaId == skId).Select(x => x.smerId).ToList();
                 viewModel.SmeroviPoSkolama = context.smerovi.Where(x => smeroviPoSkoli.Contains(x.smerId)).ToList();
                 int id = viewModel.SmeroviPoSkolama.First().smerId;

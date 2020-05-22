@@ -16,12 +16,18 @@
         <label class="matDesignLabel" for="smerOpis">Opis</label>
         @Html.TextAreaFor(m => m.smerOpis, new { @name = "smerOpis" });
 
-        <label class="matDesignLabel" for="skole" style=" position:relative;top:-10px;">Skole</label>
-        @Html.DropDownListFor(m => m.skolaId, new SelectList(Model.skole, "idSkole", "NazivSkole"), new { @class = "izgledDropdown" })
+        if (this.User.IsInRole("SuperAdministrator"))
+        {
+            <label class="matDesignLabel" for="skole" style=" position:relative;top:-10px;">Skole</label>
+            @Html.DropDownListFor(m => m.skolaId, new SelectList(Model.skole, "idSkole", "NazivSkole"), new { @class = "izgledDropdown" })
+        }
+        else
+        {
+            @Html.HiddenFor(m => m.skolaId)
+        }
 
         <button type="submit" id="postavi">POSTAVI</button>
     }
-    
 </div>
 
 @Scripts.Render("~/bundles/novi_smer")
