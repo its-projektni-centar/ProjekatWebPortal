@@ -95,7 +95,8 @@ namespace Projekat
 
             bundles.Add(new ScriptBundle("~/bundles/novi_korisnik").Include(
              "~/Scripts/Korisnik/register.js",
-             "~/Scripts/customDropdown.js",
+             "~/Scripts/Korisnik/customDropdownKorisnik.js",
+             "~/Scripts/Korisnik/customDropdown.js",
               "~/Scripts/Korisnik/SakrijGodine.js"
 
             ));

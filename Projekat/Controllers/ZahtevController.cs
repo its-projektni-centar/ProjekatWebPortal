@@ -260,10 +260,26 @@ namespace Projekat.Controllers
         [HttpGet]
         public JsonResult DropDownInitiate()
         {
-            var predmeti = context.predmeti.Where(x => x.tipId == 2).ToList();
-            var prviPredmet = predmeti.First();
-            var moduli = context.moduli.Where(x => x.predmetId == prviPredmet.predmetId).ToList();
-            var result = new { predmeti = predmeti, moduli = moduli };
+
+            //novo
+            var predmeti1 = 0;
+            var moduli1 = 0;
+            var result = new { predmeti = predmeti1, moduli = moduli1 };
+            //novo
+
+            try
+            {
+                var predmeti = context.predmeti.Where(x => x.tipId == 2).ToList();
+                var prviPredmet = predmeti.First();
+                var moduli = context.moduli.Where(x => x.predmetId == prviPredmet.predmetId).ToList();
+                var result1 = new { predmeti = predmeti, moduli = moduli };
+                return Json(result1, JsonRequestBehavior.AllowGet);
+            }
+            catch
+            {
+
+            }
+
             return Json(result, JsonRequestBehavior.AllowGet);
         }
         //on change popunjava modul select

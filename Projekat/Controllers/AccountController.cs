@@ -24,11 +24,13 @@ namespace Projekat.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        private IMaterijalContext context;
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
         public AccountController()
         {
+            context = new MaterijalContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -160,27 +162,68 @@ namespace Projekat.Controllers
             }
         }
 
+        public JsonResult GetSmerovi(int skolaID)
+        {
+            RegisterViewModel viewModel = new RegisterViewModel
+            {
+                Skole = context.skole.ToList(),
+                Smerovi = context.smerovi.ToList()
+            };
+            var smeroviPoSkoli = context.smeroviPoSkolama.Where(x => x.skolaId == skolaID).Select(x => x.smerId).ToList();
+            viewModel.SmeroviPoSkolama = context.smerovi.Where(x => smeroviPoSkoli.Contains(x.smerId)).ToList();
+
+            var result = new { smerovi = viewModel.SmeroviPoSkolama};
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
         //
         // GET: /Account/Register
+        [HttpGet]
         [Authorize(Roles = "SuperAdministrator,Administrator")]
         public async Task<ActionResult> Register()
         {
-            RegisterViewModel ViewModel = new RegisterViewModel();
+            RegisterViewModel ViewModel = new RegisterViewModel
+            {
+                Skole = context.skole.ToList(),
+                Smerovi = context.smerovi.ToList()
+            };
 
             MaterijalContext matcont = new MaterijalContext();
-           
+
             ViewModel.Smerovi = matcont.smerovi.ToList();
-            
+
             if (User.IsInRole("Administrator"))
             {
-                SkolaModel s = await ApplicationUser.vratiSkoluModel(User.Identity.Name) ?? new SkolaModel { NazivSkole="Undefined",IdSkole= 0,Skraceno="Undefined"};
+                SkolaModel s = await ApplicationUser.vratiSkoluModel(User.Identity.Name) ?? new SkolaModel { NazivSkole = "Undefined", IdSkole = 0, Skraceno = "Undefined" };
                 ViewModel.Skole = new List<SkolaModel> { s };
-                ViewModel.Uloge = matcont.Roles.Where(x=>x.Name != "Administrator" && x.Name != "SuperAdministrator").ToList();
+                ViewModel.Uloge = matcont.Roles.Where(x => x.Name != "Administrator" && x.Name != "SuperAdministrator").ToList();
             }
             else
             {
+                //novo
+
+                try
+                {
+                    var skId = ViewModel.Skole.ToList()[0].IdSkole;
+                    if (!this.User.IsInRole("SuperAdministrator"))
+                    {
+                        SkolaModel sk = await ApplicationUser.vratiSkoluModel(User.Identity.Name);
+                        if (sk.IdSkole > 0)
+                        {
+                            skId = sk.IdSkole;
+                        }
+                    }
+                    var smeroviPoSkoli = context.smeroviPoSkolama.Where(x => x.skolaId == skId).Select(x => x.smerId).ToList();
+                    ViewModel.SmeroviPoSkolama = context.smerovi.Where(x => smeroviPoSkoli.Contains(x.smerId)).ToList();
+                }
+                catch (ArgumentOutOfRangeException) { return new HttpNotFoundResult("Nema unetih smerova"); }
+
+
+                //kraj novog
                 ViewModel.Skole = matcont.Skole.ToList();
                 ViewModel.Uloge = matcont.Roles.ToList();
+
             }
             return View(ViewModel);
 
@@ -491,8 +534,11 @@ namespace Projekat.Controllers
             {
                 model.Skole = matcont.Skole.ToList();
                 model.Uloge = matcont.Roles.ToList();
+                
             }
-          
+
+            var smeroviPoSkoli = context.smeroviPoSkolama.Where(x => x.skolaId == model.skolaId).Select(x => x.smerId).ToList();
+            model.SmeroviPoSkolama = context.smerovi.Where(x => smeroviPoSkoli.Contains(x.smerId)).ToList();
             return View(model);
         }
 
