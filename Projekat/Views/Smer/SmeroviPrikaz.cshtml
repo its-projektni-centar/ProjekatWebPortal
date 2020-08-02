@@ -34,8 +34,8 @@
                 }
                 <a class="predmet-kontrole opis" href="#" data-toggle="modal" data-target="#opisModal">OPIS</a>
                 @*<a href="/Predmet/PredmetiPrikaz/@Url.Encode( smer.smerNaziv)" class="predmet-kontrole">PREDMETI</a>*@
-                <a href="/Razred/RazrediPrikaz/@Url.Encode( smer.smerNaziv)" class="predmet-kontrole">RAZREDI</a>
-
+                @*<a href="/Razred/RazrediPrikaz/@Url.Encode( smer.smerNaziv)" class="predmet-kontrole">RAZREDI</a>*@
+                <a href="/Razred/RazrediPrikaz/@smer.smerId" class="predmet-kontrole">RAZREDI</a>
                 <!--Izmenjeno za razrede-->
             </div>
             <div class="opisSmera" style="display:none"><p>@smer.smerOpis</p></div>

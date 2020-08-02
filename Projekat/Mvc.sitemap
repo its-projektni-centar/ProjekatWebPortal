@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <mvcSiteMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
             xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
@@ -24,15 +24,15 @@
        <mvcSiteMapNode title="Novi Materijal" controller="Materijal" action="UploadMaterijal"/>
       <mvcSiteMapNode title="Materijal Za Profesore" controller="Materijal" action="MaterijaliPrikaz" id=""/>
     </mvcSiteMapNode>
-    <mvcSiteMapNode title="Smerovi" controller="Smer" action="SmeroviPrikaz" >
+    <mvcSiteMapNode title="Smerovi" controller="Smer" action="SmeroviPrikaz" preservedRouteParameters="id">
       <mvcSiteMapNode title="Razredi" controller="Razred" action="RazrediPrikaz" preservedRouteParameters="id">
 
         <mvcSiteMapNode title="Predmeti" controller="Predmet" action="PredmetiPrikaz" preservedRouteParameters="Smer, razred">
-
+          <mvcSiteMapNode title="Moduli" controller="Modul" action="ModulPrikaz" preservedRouteParameters="id">
           <mvcSiteMapNode title="Materijal" controller="Materijal" action="MaterijaliPrikaz" preservedRouteParameters="id"/>
 
+          </mvcSiteMapNode>
         </mvcSiteMapNode>
-
       </mvcSiteMapNode>
     </mvcSiteMapNode>
     <mvcSiteMapNode title="Login" controller="Account" action="Login"/>

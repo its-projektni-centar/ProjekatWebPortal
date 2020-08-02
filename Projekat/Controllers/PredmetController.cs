@@ -185,22 +185,22 @@ namespace Projekat.Controllers
         /// <param name="Smer">Naziv smera za koji zelimo da prikazemo predmete.</param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult PredmetiPrikaz(string Smer, int razred)
+        public ActionResult PredmetiPrikaz(int Smer, int razred)
         {
             context = new MaterijalContext();
             List<SmerModel> smerovi = context.smerovi.ToList();
 
-            int smerId;
+            int smerId = Smer;
 
             int razredPOM = razred;
-            try
-            {
-                smerId = context.smerovi.FirstOrDefault(x => x.smerNaziv == Smer).smerId;
-            }
-            catch
-            {
-                return View("FileNotFound");
-            }
+            //try
+            //{
+            //    smerId = context.smerovi.FirstOrDefault(x => x.smerNaziv == Smer).smerId;
+            //}
+            //catch
+            //{
+            //    return View("FileNotFound");
+            //}
 
             if (smerId != 0)
             {
