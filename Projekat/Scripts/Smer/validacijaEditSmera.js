@@ -1,4 +1,11 @@
 ﻿$(document).ready(function () {
+    var data = sessionStorage.getItem('editSmer');
+    if (data) {
+        $('#snackbarDel').css('display', 'block');
+        sessionStorage.removeItem('editSmer');
+    }
+    else
+        $('#snackbarDel').css('display', 'none');
     $("#editSmera").validate({
         rules: {
             smerNaziv: {
@@ -24,7 +31,10 @@
                 minlength: "Polje opis mora sadržati najmanje 5 karaktera.",
                 maxlength: "Polje opis može sadržati najviše 1000 karaktera."
             }
-
+        },
+        submitHandler: function (forma) {
+            sessionStorage.setItem('editSmer', true);
+            forma.submit();
         }
     })
 });

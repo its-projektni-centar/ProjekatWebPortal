@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using Projekat.Models;
-
+using System.Collections.Generic;
 
 namespace Projekat.ViewModels
 {
@@ -12,7 +8,13 @@ namespace Projekat.ViewModels
     /// </summary>
     public class PredmetPoSmeruViewModel
     {
-
+        /// <summary>
+        /// Gets or sets the smerovi.
+        /// </summary>
+        /// <value>
+        /// The smerovi.
+        /// </value>
+        public DodajPremetViewModel viewModel { get; set; }
 
         /// <summary>
         /// Gets or sets the predmeti.
@@ -21,7 +23,6 @@ namespace Projekat.ViewModels
         /// The predmeti.
         /// </value>
         public List<PredmetModel> predmeti { get; set; }
-
 
         /// <summary>
         /// Gets or sets the smerovi.
@@ -38,6 +39,7 @@ namespace Projekat.ViewModels
         /// The smerovi identifier.
         /// </value>
         public List<int> smeroviId { get; set; }
+
         /// <summary>
         /// Gets or sets the smer identifier.
         /// </summary>
@@ -45,6 +47,7 @@ namespace Projekat.ViewModels
         /// The smer identifier.
         /// </value>
         public int smerId { get; set; }
+
         /// <summary>
         /// Gets or sets the predmet identifier.
         /// </summary>
@@ -52,6 +55,7 @@ namespace Projekat.ViewModels
         /// The predmet identifier.
         /// </value>
         public int predmetId { get; set; }
+
         /// <summary>
         /// Gets or sets the predmet naziv.
         /// </summary>
@@ -59,6 +63,7 @@ namespace Projekat.ViewModels
         /// The predmet naziv.
         /// </value>
         public string predmetNaziv { get; set; }
+
         /// <summary>
         /// Gets or sets the predmet opis.
         /// </summary>
@@ -67,8 +72,6 @@ namespace Projekat.ViewModels
         /// </value>
         public string predmetOpis { get; set; }
 
-		public int? Razred { get; set; } // dodato, PAZI
-
-
-	}
+        public int? Razred { get; set; } // dodato, PAZI
+    }
 }

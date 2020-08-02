@@ -1,1 +1,0 @@
-Globalni dijagram cele BP :-D

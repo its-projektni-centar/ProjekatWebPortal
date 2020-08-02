@@ -1,4 +1,11 @@
 ﻿$(document).ready(function () {
+    var data = sessionStorage.getItem('uploadModul');
+    if (data) {
+        $('#snackbar').css('display', 'block');
+        sessionStorage.removeItem('uploadModul');
+    }
+    else
+        $('#snackbar').css('display', 'none');
 
     $('#modulForma').validate({
         rules: {
@@ -25,6 +32,7 @@
             }
         },
         submitHandler: function (forma) {
+            sessionStorage.setItem('uploadModul', true);
             forma.submit();
         }
     });

@@ -1,5 +1,11 @@
 ﻿$(document).ready(function () {
-
+    var data = sessionStorage.getItem('editModul');
+    if (data) {
+        $('#snackbar').css('display', 'block');
+        sessionStorage.removeItem('editModul');
+    }
+    else
+        $('#snackbar').css('display', 'none');
 
     $('#modulForma').validate({
         rules: {
@@ -27,6 +33,7 @@
         },
 
         submitHandler: function (forma) {
+            sessionStorage.setItem('editModul', true);
             forma.submit();
         }
     });

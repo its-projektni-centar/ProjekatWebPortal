@@ -6,7 +6,7 @@
 <div id="sredina">
     @if (this.User.IsInRole("SuperAdministrator") || this.User.IsInRole("LokalniUrednik"))
     {
-        <a id="novi-materijal" href="../Smer/DodajSmer">
+        <a id="novi-materijal" href="/Smer/DodajSmer">
             <svg width="60" height="60" xmlns="http://www.w3.org/2000/svg">
                 <g>
                     <title>background</title>
@@ -92,6 +92,8 @@
             </div>
         </div>
     }
-    <div id="snackbar"><span>Smer uspešno izmenjen!</span> <button type="button">UNDO</button></div>
+    <div id="snackbarDel"><span>Smer uspešno izmenjen!</span></div>
+    <div id="snackbar"><span>Smer uspešno dodat!</span></div>
 </div>
 @Scripts.Render("~/bundles/smer_prikaz")
+@Scripts.Render("~/Scripts/Smer/SnackBarCreate.js")

@@ -1,4 +1,4 @@
-﻿using System.Web.Optimization;
+using System.Web.Optimization;
 
 namespace Projekat
 {
@@ -55,30 +55,31 @@ namespace Projekat
 
             bundles.Add(new ScriptBundle("~/bundles/upload_materijal").Include(
             "~/Scripts/Materijal/uploadMaterijal.js",
+            "~/Scripts/Materijal/dropdownovi.js"
             //"~/Scripts/Materijal/uploadMaterijal.js",
-            "~/Scripts/customDropdown.js"
-            ));
-            bundles.Add(new ScriptBundle("~/bundles/DodajModul").Include(
-            //"~/Scripts/Materijal/uploadMaterijal.js",
-            "~/Scripts//Modul/customDropdownModul.js"
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/predmet_prikaz").Include(
              "~/Scripts/Predmet/editPredmeta.js",
              "~/Scripts/Predmet/modalOpisPredmet.js",
-             "~/Scripts/Predmet/validacijaEditPredmeta.js"
+             "~/Scripts/Predmet/validacijaEditPredmeta.js",
+             "~/Scripts/Predmet/validacijaNovogPredmeta.js",
+             "~/Scripts/Predmet/smerPoSkoli.js"
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/novi_predmet").Include(
-             "~/Scripts/Predmet/validacijaNovogPredmeta.js"
+             "~/Scripts/Predmet/validacijaNovogPredmeta.js",
+             "~/Scripts/Predmet/smerPoSkoli.js"
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/novi_modul").Include(
-             "~/Scripts/Modul/validacijaNovogModula.js"
+             "~/Scripts/Modul/validacijaNovogModula.js",
+            "~/Scripts//Modul/customDropdownModul.js"
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/edit_modul").Include(
-             "~/Scripts/Modul/validacijaEditModula.js"
+             "~/Scripts/Modul/validacijaEditModula.js",
+            "~/Scripts//Modul/customDropdownModul.js"
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/smer_prikaz").Include(
@@ -88,12 +89,14 @@ namespace Projekat
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/novi_smer").Include(
-             "~/Scripts/Smer/validacijaNovogSmera.js"
+             "~/Scripts/Smer/validacijaNovogSmera.js",
+             "~/Scripts/customDropdown.js"
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/novi_korisnik").Include(
              "~/Scripts/Korisnik/register.js",
-             "~/Scripts/customDropdown.js",
+             "~/Scripts/Korisnik/customDropdownKorisnik.js",
+             "~/Scripts/Korisnik/customDropdown.js",
               "~/Scripts/Korisnik/SakrijGodine.js"
 
             ));

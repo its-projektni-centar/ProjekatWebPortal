@@ -1,4 +1,11 @@
 ﻿$(document).ready(function () {
+    var data = sessionStorage.getItem('editPredmet');
+    if (data) {
+        $('#snackbar').css('display', 'block');
+        sessionStorage.removeItem('editPredmet');
+    }
+    else
+        $('#snackbar').css('display', 'none');
     $("#editPredmeta").validate({
         rules: {
             smeroviId: {
@@ -37,6 +44,10 @@
             else {
                 error.insertAfter(element);
             }
+        },
+        submitHandler: function (forma) {
+            sessionStorage.setItem('editPredmet', true);
+            forma.submit();
         }
     });
 });

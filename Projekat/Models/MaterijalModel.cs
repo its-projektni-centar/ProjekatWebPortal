@@ -139,6 +139,8 @@ namespace Projekat.Models
         [ForeignKey("TipMaterijalModel")]
         public int tipMaterijalId { get; set; }
 
+        public bool Obrisan { get; set; }
+
         /// <summary>
         /// Gets or sets the namena materijala model.
         /// </summary>

@@ -73,9 +73,14 @@ namespace Projekat.Models
         public IEnumerable<IdentityRole> Uloge { get; set; }
         public IEnumerable<SkolaModel> Skole { get; set; }
         public IEnumerable<StrucnaSpremaModel> StrucneSpreme { get; set; }
+
+        public List<SmerModel> SmeroviPoSkolama { get; set; }
         public int SelektovanaSkola { get; set; }
         [DataType(DataType.PhoneNumber)]
         public string phoneNumber { get; set; }
+
+        public int skolaId { get; set; }
+        public int smerId { get; set; }
 
         public int? GodinaUpisa { get; set; }
         public string SelektovanaSS { get; set; }

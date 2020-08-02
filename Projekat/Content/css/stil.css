@@ -1,4 +1,4 @@
-﻿* {
+* {
     margin: 0;
     padding: 0;
 }
@@ -513,6 +513,9 @@ div.kartica div.karticaTekts {
 
         div.kartica div.karticaTekts div.kontrole a.delete {
             margin-left: 26px;
+        }
+        div.kartica div.karticaTekts div.kontrole a.upgrade {
+            margin-left: 13px;
         }
 
         div.kartica div.karticaTekts div.kontrole a {
@@ -1305,6 +1308,69 @@ div.kartica-smer .kontrola-ikonica {
 }
 
 #snackbar button {
+    background-color: transparent;
+    border: none;
+    display: inline-block;
+    color: #4CAF50;
+    font-size: 15px;
+    text-align: center;
+    float: right;
+    margin-right: 20px;
+    font-weight: 500;
+    font-family: roboto-regular;
+}
+
+/*snackbar KRAJ*/
+
+/*snackbarDel pocetak*/
+
+#snackbarDel {
+    width: 280px;
+    height: 50px;
+    margin: 150px auto 5px auto;
+    background-color: #323232;
+    border-radius: 2px;
+    box-sizing: border-box;
+    animation: iskakanjeSaDna 4s cubic-bezier(.04,.69,.21,.99) 1 forwards;
+    position: fixed;
+    bottom: 50px;
+    left: 50%;
+    padding-left: 25px;
+    padding-top: 16px;
+    line-height: 16px;
+    display: none;
+}
+
+@keyframes iskakanjeSaDna {
+    0% {
+        transform: translate(0px, 50px);
+        opacity: 0;
+    }
+
+    12% {
+        transform: translate(0px, 0);
+        opacity: 1;
+    }
+
+    88% {
+        transform: translate(0px, 0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(0px, 50px);
+        opacity: 0;
+    }
+}
+
+#snackbarDel span {
+    color: #fff;
+    font-size: 14px;
+    font-family: 'roboto-regular';
+    box-sizing: border-box;
+}
+
+#snackbarDel button {
     background-color: transparent;
     border: none;
     display: inline-block;
