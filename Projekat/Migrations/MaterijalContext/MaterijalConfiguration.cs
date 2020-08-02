@@ -32,9 +32,9 @@ namespace Projekat.Migrations.MaterijalContext
             );
 
             context.smerovi.AddOrUpdate(x => x.smerId,
-                new Models.SmerModel() { smerId = 1, smerNaziv = "Smer 1", smerOpis = "Smer 1", smerSkraceno="S1" },
+                new Models.SmerModel() { smerId = 1, smerNaziv = "Smer 1", smerOpis = "Smer 1", smerSkraceno = "S1" },
                 new Models.SmerModel() { smerId = 2, smerNaziv = "Smer 2", smerOpis = "Smer 2", smerSkraceno = "S2" },
-                new Models.SmerModel() { smerId = 3, smerNaziv = "Smer 3", smerOpis="Smer 3", smerSkraceno = "S3" }
+                new Models.SmerModel() { smerId = 3, smerNaziv = "Smer 3", smerOpis = "Smer 3", smerSkraceno = "S3" }
 
             );
             context.Skole.AddOrUpdate(x => x.IdSkole,
@@ -42,10 +42,15 @@ namespace Projekat.Migrations.MaterijalContext
                 new Models.SkolaModel() { IdSkole = 2, NazivSkole = "Nikola Tesla", Skraceno = "NiTe" },
                 new Models.SkolaModel() { IdSkole = 3, NazivSkole = "Mihajlo Pupin", Skraceno = "MihP" }
                 );
+            context.smeroviPoSkolama.AddOrUpdate(x => x.skolaId,
+                new Models.SmerPoSkoli() { skolaId = 1, smerId = 1 },
+                new Models.SmerPoSkoli() { skolaId = 1, smerId = 2 },
+                new Models.SmerPoSkoli() { skolaId = 1, smerId = 3 }
+                );
 
             context.tipPredmeta.AddOrUpdate(x => x.tipId,
-                new Models.TipPredmetaModel() { tipId = 1, tipNaziv = "lokalni"},
-                new Models.TipPredmetaModel() { tipId = 2, tipNaziv = "globalni"}
+                new Models.TipPredmetaModel() { tipId = 1, tipNaziv = "lokalni" },
+                new Models.TipPredmetaModel() { tipId = 2, tipNaziv = "globalni" }
                 );
             /*context.Forum.AddOrUpdate(x => x.Id_post,
                 new Models.Forum_Post() { posttitle = "Naslov2", postmessage = "blablablatruc", posteddate = DateTime.Now, approved = "true", Id = "00aa0b52-9e48-4981-bbb9-76219edfffba" }

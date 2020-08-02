@@ -72,14 +72,28 @@ namespace Projekat.Controllers
         /// <returns></returns>
         [HttpGet]
         [Authorize(Roles = "SuperAdministrator,LokalniUrednik")]
-        public ActionResult DodajSmer()
+        public async Task<ActionResult> DodajSmer()
         {
-            List<SkolaModel> temp = context.skole.ToList();
-            DodajSmerViewModel vm = new DodajSmerViewModel()
+            if (!this.User.IsInRole("SuperAdministrator"))
             {
-                skole = temp
-            };
-            return View("DodajSmer", vm);
+                SkolaModel sk = await ApplicationUser.vratiSkoluModel(User.Identity.Name);
+                DodajSmerViewModel viewModel = new DodajSmerViewModel();
+                if (sk.IdSkole > 0)
+                {
+                    viewModel.skolaId = sk.IdSkole;
+                }
+
+                return View("DodajSmer", viewModel);
+            }
+            else
+            {
+                List<SkolaModel> temp = context.skole.ToList();
+                DodajSmerViewModel vm = new DodajSmerViewModel()
+                {
+                    skole = temp
+                };
+                return View("DodajSmer", vm);
+            }
         }
 
         /// <summary>
@@ -124,16 +138,19 @@ namespace Projekat.Controllers
                     }
                     catch { }
                 }
-                try
+                if (smer.skolaId != 0)
                 {
-                    context.Add<SmerPoSkoli>(new SmerPoSkoli()
+                    try
                     {
-                        skolaId = smer.skolaId,
-                        smerId = temp.smerId
-                    });
-                    context.SaveChanges();
+                        context.Add<SmerPoSkoli>(new SmerPoSkoli()
+                        {
+                            skolaId = smer.skolaId,
+                            smerId = temp.smerId
+                        });
+                        context.SaveChanges();
+                    }
+                    catch { }
                 }
-                catch { }
 
                 return RedirectToAction("SmeroviPrikaz", new { id = smer.skolaId });
             }

@@ -123,8 +123,113 @@ namespace Projekat.Controllers
             {
                 return View("_Kartice", vm);
             }
-            
+
             return View("MaterijaliPrikaz", vm);
+        }
+
+        public JsonResult GetSmerovi(int skolaID)
+        {
+            MaterijalUploadViewModel viewModel = new MaterijalUploadViewModel
+            {
+                tipoviMaterijala = context.tipMaterijala.ToList(),
+                nameneMaterijala = context.nameneMaterijala.ToList(),
+                skole = context.skole.ToList(),
+                Smerovi = context.smerovi.ToList(),
+                Predmeti = context.predmeti.ToList(),
+                Moduli = context.moduli.ToList()
+            };
+
+            var smeroviPoSkoli = context.smeroviPoSkolama.Where(x => x.skolaId == skolaID).Select(x => x.smerId).ToList();
+            viewModel.SmeroviPoSkolama = context.smerovi.Where(x => smeroviPoSkoli.Contains(x.smerId)).ToList();
+
+            if (viewModel.SmeroviPoSkolama.Count > 0)
+            {
+                int id = viewModel.SmeroviPoSkolama.FirstOrDefault().smerId;
+
+                var predmetiposmeru = context.predmetiPoSmeru.Where(x => x.smerId == id).Select(c => c.predmetId).ToList();
+                viewModel.PredmetPoSmeru = viewModel.Predmeti.Where(x => predmetiposmeru.Contains(x.predmetId)).ToList();
+
+                int idP = viewModel.PredmetPoSmeru.FirstOrDefault().predmetId;
+
+                viewModel.ModulPoPredmetu = context.moduli.Where(x => x.predmetId == idP).ToList();
+
+                if (viewModel.ModulPoPredmetu.Count() < 1)
+                {
+                    viewModel.ModulPoPredmetu = new List<ModulModel>();
+                }
+
+                var res = new { smerovi = viewModel.SmeroviPoSkolama, predmeti = viewModel.PredmetPoSmeru, moduli = viewModel.ModulPoPredmetu };
+
+                return Json(res, JsonRequestBehavior.AllowGet);
+            }
+            viewModel.ModulPoPredmetu = new List<ModulModel>();
+            viewModel.PredmetPoSmeru = new List<PredmetModel>();
+            var result = new { smerovi = viewModel.SmeroviPoSkolama, predmeti = viewModel.PredmetPoSmeru, moduli = viewModel.ModulPoPredmetu };
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetPredmeti(int smerID)
+        {
+            MaterijalUploadViewModel viewModel = new MaterijalUploadViewModel
+            {
+                tipoviMaterijala = context.tipMaterijala.ToList(),
+                nameneMaterijala = context.nameneMaterijala.ToList(),
+                skole = context.skole.ToList(),
+                Smerovi = context.smerovi.ToList(),
+                Predmeti = context.predmeti.ToList(),
+                Moduli = context.moduli.ToList()
+            };
+
+            var predmetiposmeru = context.predmetiPoSmeru.Where(x => x.smerId == smerID).Select(c => c.predmetId).ToList();
+            viewModel.PredmetPoSmeru = viewModel.Predmeti.Where(x => predmetiposmeru.Contains(x.predmetId)).ToList();
+
+            if (viewModel.PredmetPoSmeru.Count < 1)
+            {
+                viewModel.PredmetPoSmeru = new List<PredmetModel>();
+                viewModel.ModulPoPredmetu = new List<ModulModel>();
+
+                var result = new { predmeti = viewModel.PredmetPoSmeru, moduli = viewModel.ModulPoPredmetu };
+
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+
+            int idP = viewModel.PredmetPoSmeru.FirstOrDefault().predmetId;
+
+            viewModel.ModulPoPredmetu = context.moduli.Where(x => x.predmetId == idP).ToList();
+
+            if (viewModel.ModulPoPredmetu.Count() < 1)
+            {
+                viewModel.ModulPoPredmetu = new List<ModulModel>();
+            }
+
+            var res = new { predmeti = viewModel.PredmetPoSmeru, moduli = viewModel.ModulPoPredmetu };
+
+            return Json(res, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetModuli(int modulID)
+        {
+            MaterijalUploadViewModel viewModel = new MaterijalUploadViewModel
+            {
+                tipoviMaterijala = context.tipMaterijala.ToList(),
+                nameneMaterijala = context.nameneMaterijala.ToList(),
+                skole = context.skole.ToList(),
+                Smerovi = context.smerovi.ToList(),
+                Predmeti = context.predmeti.ToList(),
+                Moduli = context.moduli.ToList()
+            };
+
+            viewModel.ModulPoPredmetu = context.moduli.Where(x => x.predmetId == modulID).ToList();
+
+            if (viewModel.ModulPoPredmetu.Count() < 1)
+            {
+                viewModel.ModulPoPredmetu = new List<ModulModel>();
+            }
+
+            var res = new { moduli = viewModel.ModulPoPredmetu };
+
+            return Json(res, JsonRequestBehavior.AllowGet);
         }
 
         //kod ove akcije treba dodati punjenje tabele namena materijala
@@ -135,7 +240,7 @@ namespace Projekat.Controllers
         /// <returns></returns>
         [HttpGet]
         [Authorize(Roles = "SuperAdministrator,LokalniUrednik,Profesor")]
-        public ActionResult UploadMaterijal(int? smerId, int? predmetId)
+        public async Task<ActionResult> UploadMaterijal()
         {
             context = new MaterijalContext();
 
@@ -143,73 +248,38 @@ namespace Projekat.Controllers
             {
                 tipoviMaterijala = context.tipMaterijala.ToList(),
                 nameneMaterijala = context.nameneMaterijala.ToList(),
+                skole = context.skole.ToList(),
                 Smerovi = context.smerovi.ToList(),
                 Predmeti = context.predmeti.ToList(),
                 Moduli = context.moduli.ToList()
             };
 
-            if (smerId == null && predmetId == null)
+            try
             {
-                //Uradjen try-catch blog za problem kada ne postoje smerovi u bazi podataka
-                //u buducnosti treba unaprediti da umesti http greske ide na error layout gresku
-                try
+                var skId = viewModel.skole.ToList()[0].IdSkole;
+                if (!this.User.IsInRole("SuperAdministrator"))
                 {
-                    smerId = viewModel.Smerovi.ToList()[0].smerId;
-
-                    var predmetiposmeru = context.predmetiPoSmeru.Where(x => x.smerId == smerId).Select(c => c.predmetId).ToList();
-
-                    viewModel.PredmetPoSmeru = viewModel.Predmeti.Where(x => predmetiposmeru.Contains(x.predmetId)).ToList();
-                    viewModel.ModulPoPredmetu = viewModel.Moduli.Where(x => x.predmetId == viewModel.PredmetPoSmeru.First().predmetId).ToList();
-
-                    if (TempData["SuccMsg"] != null) { ViewBag.SuccMsg = TempData["SuccMsg"]; }
-                    //else if (TempData["ErrorMsg"] != null) { ViewBag.ErrorMsg = TempData["ErrorMsg"]; }
-
-                    return View("UploadMaterijal", viewModel);
+                    SkolaModel sk = await ApplicationUser.vratiSkoluModel(User.Identity.Name);
+                    if (sk.IdSkole > 0)
+                    {
+                        skId = sk.IdSkole;
+                    }
                 }
-                catch (ArgumentOutOfRangeException)
-                {
-                    return new HttpNotFoundResult("Nema unetih smerova");
-                }
+                var smeroviPoSkoli = context.smeroviPoSkolama.Where(x => x.skolaId == skId).Select(x => x.smerId).ToList();
+                viewModel.SmeroviPoSkolama = context.smerovi.Where(x => smeroviPoSkoli.Contains(x.smerId)).ToList();
+                int id = viewModel.SmeroviPoSkolama.First().smerId;
+                var predmetiposmeru = context.predmetiPoSmeru.Where(x => x.smerId == id).Select(c => c.predmetId).ToList();
+                viewModel.PredmetPoSmeru = viewModel.Predmeti.Where(x => predmetiposmeru.Contains(x.predmetId)).ToList();
+
+                int idP = viewModel.PredmetPoSmeru.FirstOrDefault().predmetId;
+
+                viewModel.ModulPoPredmetu = context.moduli.Where(x => x.predmetId == idP).ToList();
+
+                if (TempData["SuccMsg"] != null) { ViewBag.SuccMsg = TempData["SuccMsg"]; }
+
+                return View("UploadMaterijal", viewModel);
             }
-            else
-            {
-                viewModel.PredmetPoSmeru = new List<PredmetModel>();
-                viewModel.ModulPoPredmetu = new List<ModulModel>();
-
-                if (predmetId != null && smerId != null)
-                {
-                    try
-                    {
-                        var predmetiposmeru = context.predmetiPoSmeru.Where(x => x.smerId == smerId).Select(c => c.predmetId).ToList();
-                        viewModel.PredmetPoSmeru = viewModel.Predmeti.Where(x => predmetiposmeru.Contains(x.predmetId)).ToList();
-                        viewModel.ModulPoPredmetu = viewModel.Moduli.Where(x => x.predmetId == predmetId).ToList();
-                    }
-                    catch (Exception)
-                    {
-                        return View("HttpNotFound");
-                    }
-
-                    return PartialView("_PredmetiNaSmeru", viewModel);
-                }
-                else if (smerId != null && predmetId == null)
-                {
-                    try
-                    {
-                        var predmetiposmeru = context.predmetiPoSmeru.Where(x => x.smerId == smerId).Select(c => c.predmetId).ToList();
-                        viewModel.PredmetPoSmeru = viewModel.Predmeti.Where(x => predmetiposmeru.Contains(x.predmetId)).ToList();
-                        viewModel.ModulPoPredmetu = viewModel.Moduli.Where(x => x.predmetId == viewModel.PredmetPoSmeru.First().predmetId).ToList();
-                    }
-                    catch (Exception)
-                    {
-                        return View("HttpNotFound");
-                    }
-                    return PartialView("_PredmetiNaSmeru", viewModel);
-                }
-                else
-                {
-                    return new HttpStatusCodeResult(403);
-                }
-            }
+            catch (ArgumentOutOfRangeException) { return new HttpNotFoundResult("Nema unetih smerova"); }
         }
 
         //kod ove akcije treba dodati punjenje tabele namena materijala

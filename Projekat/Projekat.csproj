@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.10.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
@@ -370,6 +370,10 @@
     <Compile Include="Migrations\MaterijalContext\202005130816299_SmeroviPoSkolama.Designer.cs">
       <DependentUpon>202005130816299_SmeroviPoSkolama.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\MaterijalContext\202005180856249_PredlozeniModul.cs" />
+    <Compile Include="Migrations\MaterijalContext\202005180856249_PredlozeniModul.Designer.cs">
+      <DependentUpon>202005180856249_PredlozeniModul.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\MaterijalContext\MaterijalConfiguration.cs" />
     <Compile Include="Migrations\VestiContext\201808170921538_Dodavanje_Vesti_U_Bazu.cs" />
     <Compile Include="Migrations\VestiContext\201808170921538_Dodavanje_Vesti_U_Bazu.Designer.cs">
@@ -445,11 +449,15 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\Accountcss\dropdown.css" />
     <Content Include="Content\css\bootstrap-flatly.css" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\datatables.min.css" />
     <Content Include="Content\css\detaljiKorisnika.css" />
+    <Content Include="Content\css\Materijalcss\dropdown.css" />
+    <Content Include="Content\css\Modulcss\dropdown.css" />
+    <Content Include="Content\css\Predmetcss\dropdownCreate.css" />
     <Content Include="Content\css\forma-novikorisnik.css" />
     <Content Include="Content\css\ForumStyles.css" />
     <Content Include="Content\css\izgled.css" />
@@ -457,13 +465,16 @@
     <Content Include="Content\css\listaKorisnikaStil.css" />
     <Content Include="Content\css\ModalnaSredjivanje.css" />
     <Content Include="Content\css\naprednaPretraga.css" />
+    <Content Include="Content\css\Predmetcss\dropdownPrikaz.css" />
     <Content Include="Content\css\reset.css" />
     <Content Include="Content\css\select2.min.css" />
     <Content Include="Content\css\select2izgled.css" />
     <Content Include="Content\css\simplebar.css" />
+    <Content Include="Content\css\Smercss\dropdownSmer.css" />
     <Content Include="Content\css\stil.css" />
     <Content Include="Content\css\TabelaListaKorisnika.css" />
     <Content Include="Content\css\UrednikOdgovor.css" />
+    <Content Include="Content\css\ZahtevZaGlobalni.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\img\08_comment-512.png" />
     <Content Include="Content\img\1280px-Line-style-icons-chat.svg.png" />
@@ -572,16 +583,18 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Korisnik\customDropdownKorisnik.js" />
     <Content Include="Scripts\Korisnik\izmeniKorisnika.js" />
     <Content Include="Scripts\Korisnik\listaKorisnika.js" />
     <Content Include="Scripts\datatables.min.js" />
     <Content Include="Scripts\Korisnik\register.js" />
     <Content Include="Scripts\Korisnik\SakrijGodine.js" />
-    <Content Include="Scripts\Materijal\PredlogDropdown.js" />
+    <Content Include="Scripts\Materijal\dropdownovi.js" />
     <Content Include="Scripts\Modul\ProveraImenaDodajGlobalni.js" />
     <Content Include="Scripts\Modul\ProveraImenaIzmenaGlobalni.js" />
     <Content Include="Scripts\Modul\SnackBarDelete.js" />
     <Content Include="Scripts\Modul\SnackBarEdit.js" />
+    <Content Include="Scripts\Predmet\smerPoSkoli.js" />
     <Content Include="Scripts\Smer\SnackBarCreate.js" />
     <Content Include="Scripts\Zahtev\zahtevDropdown.js" />
     <Content Include="Scripts\Zahtev\zahtevUpgrade.js" />
@@ -815,6 +828,7 @@
     <Content Include="Views\Materijal\_ZahtevDropdown.cshtml" />
     <Content Include="Views\Modul\ModulPrikaz.cshtml" />
     <Content Include="Views\Skola\SkolaPrikaz.cshtml" />
+    <Content Include="Views\Predmet\_customDropdown.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Konfiguracija\" />
@@ -921,6 +935,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\MaterijalContext\202005130816299_SmeroviPoSkolama.resx">
       <DependentUpon>202005130816299_SmeroviPoSkolama.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\MaterijalContext\202005180856249_PredlozeniModul.resx">
+      <DependentUpon>202005180856249_PredlozeniModul.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\VestiContext\201808170921538_Dodavanje_Vesti_U_Bazu.resx">
       <DependentUpon>201808170921538_Dodavanje_Vesti_U_Bazu.cs</DependentUpon>

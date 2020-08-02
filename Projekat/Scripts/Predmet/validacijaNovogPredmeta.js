@@ -12,11 +12,11 @@
 
     var isUploaded = sessionStorage.getItem('uploadPredmet');
     if (isUploaded) {
-        $('#snackbar').css('display', 'block');
+        $('#snackbarDel').css('display', 'block');
         sessionStorage.removeItem('uploadPredmet');
     }
     else
-        $('#snackbar').css('display', 'none');
+        $('#snackbarDel').css('display', 'none');
 
     $('#predmetForma').validate({
         rules: {
