@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using Microsoft.Ajax.Utilities;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Projekat.Controllers
@@ -6,14 +7,16 @@ namespace Projekat.Controllers
     public class RazredController : Controller
     {
         // GET: Godina
-        public ActionResult RazrediPrikaz(string id)
+        public ActionResult RazrediPrikaz(int id)
         {
-            if (id == null) // ako je smer null
+            if (id == 0) // ako je smer null
             {
                 return RedirectToAction("SmeroviPrikaz", "Smer");
             }
-            object smer = HttpUtility.UrlDecode(id);
-            return View("RazrediPrikaz", smer);
+            
+            //object smer = HttpUtility.UrlDecode(id);
+
+            return View("RazrediPrikaz", id);
         }
     }
 }
