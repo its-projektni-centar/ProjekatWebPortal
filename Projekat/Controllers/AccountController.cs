@@ -497,14 +497,14 @@ namespace Projekat.Controllers
                     //await UserManager.SendEmailAsync(user.Id, "Login informacije", "Vase korisnicko ime za ulaz u web portal je " + user.UserName + " , a vasa lozinka je:  " + password + "  Lozinku mozete promeniti.");
 
                     //SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
-                    //client.Credentials = new System.Net.NetworkCredential("culibrkbojan98@gmail.com", "bemyfriend12");
+                    
                     //client.Port = 587;
                     //client.Host = "smtp.gmail.com";
                     //client.EnableSsl = true;
                     //client.DeliveryMethod = SmtpDeliveryMethod.Network;
                     //var prom = client.ServicePoint.Address.ToString();
 
-                    //MailAddress from = new MailAddress("culibrkbojan98@gmail.com", "Admin");
+                    
                     //MailAddress to = new MailAddress(user.Email);
                     //MailMessage mail = new MailMessage();
                     //mail.From = from;
