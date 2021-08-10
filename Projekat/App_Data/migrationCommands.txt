@@ -1,0 +1,2 @@
+Update-Database -ConfigurationTypeName Projekat.Migrations.MaterijalContext.MaterijalConfiguration
+Update-Database -ConfigurationTypeName Projekat.Migrations.VestiContext.VestiConfiguration
