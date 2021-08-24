@@ -12,6 +12,7 @@ namespace Projekat.Migrations.MaterijalContext
 
         protected override void Seed(Projekat.Models.MaterijalContext context)
         {
+            /*
             context.Roles.AddOrUpdate(x => x.Id,
                 new Microsoft.AspNet.Identity.EntityFramework.IdentityRole() { Id = "5", Name = "SuperAdministrator" },
                 new Microsoft.AspNet.Identity.EntityFramework.IdentityRole() { Id = "1", Name = "Administrator" },
