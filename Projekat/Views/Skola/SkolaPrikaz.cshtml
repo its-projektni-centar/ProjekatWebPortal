@@ -1,0 +1,38 @@
+﻿@model  IEnumerable<SkolaModel>
+@using Projekat.Models
+@{
+    ViewBag.Title = "SkolaPrikaz";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="sredina">
+
+    @foreach (SkolaModel skola in Model)
+    {
+        <div class="kartica-predmet clear-fix" id="@skola.IdSkole">
+            <a class="naziv-predmeta-na-kartici" href="#">@skola.NazivSkole</a>
+            <div class="kontrole clear-fix">
+                <a class="predmet-kontrole opis" href="#" data-toggle="modal" data-target="#opisModal">OPIS</a>
+                @Html.ActionLink("SMEROVI", "SmeroviPrikaz", "Smer", new { id = skola.IdSkole },new { @class = "predmet-kontrole" })
+            </div>
+            <div class="opisPredmeta" style="display:none"><p>@skola.Skraceno</p></div>
+        </div>
+    }
+
+    <div class="modal fade" id="opisModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Skraceno ime skole <span>   </span></h4>
+                </div>
+                <div class="modal-body">
+                    <pre></pre>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Zatvori</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

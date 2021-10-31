@@ -1,0 +1,23 @@
+﻿@model Projekat.ViewModels.ForumViewModel
+@{
+    ViewBag.Title = "Sadrzaj";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/Content/css/ForumStyles.css")
+<div id="sredina" name="sredina" class="sredina-upload-mat">
+    @if (Model.Forummessage.Count() > 0)
+    {
+    <div class="d-flex flex-column">
+        @foreach (var i in Model.Forummessage)
+        {
+                <div class="p-2 forumSadrzaj">
+                    <p><span class="forumSadrzaj2">@i.messagePost</span> <span class="forumSadrzaj3">@i.messageDate</span></p>
+                </div>
+        }
+    </div>
+    }
+    else
+    {
+        <h5>Nema poruka</h5>
+    }
+</div>

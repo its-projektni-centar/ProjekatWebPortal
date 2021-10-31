@@ -1,0 +1,25 @@
+﻿@model Projekat.ViewModels.MaterijalUploadViewModel
+@if (this.User.IsInRole("SuperAdministrator"))
+{
+
+    <div class="dropdown-wrap">
+        <label>Skola</label>
+        @Html.DropDownListFor(m => m.skolaId, new SelectList(Model.skole, "IdSkole", "NazivSkole"), new { @class = "skole izgledDropdown", @id = "'" + @Model.skolaId + "'" })
+    </div>
+}
+else
+{
+    @Html.HiddenFor(m => m.skolaId)
+}
+<div class="dropdown-wrap">
+    <label>Smer</label>
+    @Html.DropDownListFor(m => m.smerId, new SelectList(Model.Smerovi, "smerId", "smerNaziv"), new { @class = "smerovi izgledDropdown", @id = "'" + @Model.smerId + "'" })
+</div>
+<div class="dropdown-wrap">
+    <label>Predmet</label>
+    @Html.DropDownListFor(m => m.predmetId, new SelectList(Model.PredmetPoSmeru, "predmetId", "predmetNaziv"), new { @class = "predmeti izgledDropdown" })
+</div>
+<div class="dropdown-wrap">
+    <label>Modul</label>
+    @Html.DropDownListFor(m => m.modulId, new SelectList(Model.ModulPoPredmetu, "modulId", "modulNaziv"), new { @class = "moduli izgledDropdown" })
+</div>

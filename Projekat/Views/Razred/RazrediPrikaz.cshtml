@@ -1,0 +1,43 @@
+﻿@model object
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="sredina">
+
+    <div class="kartica-smer clear-fix" style="width:300px">
+        <a class="naziv-smera-na-kartici" href="#"><p class="naziv-smera-na-kartici">I Razred</p></a>
+        <div class="kontrole clear-fix">
+            @Html.ActionLink("PREDMETI", "PredmetiPrikaz", "Predmet", new { Smer = Model.ToString(), razred=1} , new { @class = "predmet-kontrole" })
+        </div>
+    </div>
+
+    <div class="kartica-smer clear-fix" style="width:300px">
+
+        <a class="naziv-smera-na-kartici" href="#"><p>II Razred</p></a>
+
+        <div class="kontrole clear-fix">
+            @Html.ActionLink("PREDMETI", "PredmetiPrikaz", "Predmet", new { Smer = Model.ToString(), razred = 2}, new { @class = "predmet-kontrole" })
+        </div>
+        <div class="opisPredmeta" style="display:none"><p></p></div>
+    </div>
+
+    <div class="kartica-smer clear-fix" style="width:300px">
+        <a class="naziv-smera-na-kartici" href="#"><p>III Razred</p></a>
+        <div class="kontrole clear-fix">
+
+            @Html.ActionLink("PREDMETI", "PredmetiPrikaz", "Predmet", new { Smer = Model.ToString(), razred = 3}, new { @class = "predmet-kontrole" })
+        </div>
+        <div class="opisPredmeta" style="display:none"><p></p></div>
+    </div>
+
+    <div class="kartica-smer clear-fix" style="width:300px">
+        <a class="naziv-smera-na-kartici" href="#"><p>IV Razred</p></a>
+        <div class="kontrole clear-fix">
+
+            @Html.ActionLink("PREDMETI", "PredmetiPrikaz", "Predmet", new { Smer = Model.ToString(), razred = 4}, new { @class = "predmet-kontrole" })
+        </div>
+        <div class="opisPredmeta" style="display:none"><p></p></div>
+    </div>
+</div>

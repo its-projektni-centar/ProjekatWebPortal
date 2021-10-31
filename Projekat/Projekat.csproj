@@ -1,0 +1,332 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
+    <TypeScriptModuleKind />
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Security" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\MaterijalContext\201805081242537_init.Designer.cs">
+      <DependentUpon>201805081242537_init.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\MaterijalContext\201805101144240_IDpredmetaNULL.Designer.cs">
+      <DependentUpon>201805101144240_IDpredmetaNULL.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\MaterijalContext\201805160923559_Rename Tabele PredmetPoSmeru.Designer.cs">
+      <DependentUpon>201805160923559_Rename Tabele PredmetPoSmeru.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\MaterijalContext\201805220852305_DodavanjeImenaPredmetaISlike.Designer.cs">
+      <DependentUpon>201805220852305_DodavanjeImenaPredmetaISlike.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\MaterijalContext\201805241136490_promene.Designer.cs">
+      <DependentUpon>201805241136490_promene.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\MaterijalContext\201805241218127_Dodavanje Godine upisa, skole i strucne spreme.Designer.cs">
+      <DependentUpon>201805241218127_Dodavanje Godine upisa, skole i strucne spreme.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\MaterijalContext\201805241256011_aaaaa.Designer.cs">
+      <DependentUpon>201805241256011_aaaaa.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\MaterijalContext\201805241343001_Brisanje srucne spreme.Designer.cs">
+      <DependentUpon>201805241343001_Brisanje srucne spreme.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\MaterijalContext\201805241346338_Dodavanje smera i uloge u korisnike.Designer.cs">
+      <DependentUpon>201805241346338_Dodavanje smera i uloge u korisnike.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\MaterijalContext\201805250932435_JosNekaSredjivanja.Designer.cs">
+      <DependentUpon>201805250932435_JosNekaSredjivanja.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\MaterijalContext\201907081425002_ForumPokusaj2.Designer.cs">
+      <DependentUpon>201907081425002_ForumPokusaj2.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\MaterijalContext\201907231454340_MaterijalModelProfesor.Designer.cs">
+      <DependentUpon>201907231454340_MaterijalModelProfesor.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\MaterijalContext\201907231533348_PopravkaMaterijalModelProfesor.Designer.cs">
+      <DependentUpon>201907231533348_PopravkaMaterijalModelProfesor.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\MaterijalContext\201907231703477_ispravke2.Designer.cs">
+      <DependentUpon>201907231703477_ispravke2.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\MaterijalContext\201908051311119_popravka3.Designer.cs">
+      <DependentUpon>201908051311119_popravka3.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\MaterijalContext\201908191449182_popravke4.Designer.cs">
+      <DependentUpon>201908191449182_popravke4.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\MaterijalContext\201908211357131_Forum3.Designer.cs">
+      <DependentUpon>201908211357131_Forum3.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\MaterijalContext\201908261558516_ForumMessage1.Designer.cs">
+      <DependentUpon>201908261558516_ForumMessage1.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\MaterijalContext\201908271240117_ForumMessage2.Designer.cs">
+      <DependentUpon>201908271240117_ForumMessage2.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\MaterijalContext\201909020919578_ForumMessage3.Designer.cs">
+      <DependentUpon>201909020919578_ForumMessage3.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\MaterijalContext\201909020949558_ForumMEssage4.Designer.cs">
+      <DependentUpon>201909020949558_ForumMEssage4.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\MaterijalContext\201909061316464_RAZREDI.Designer.cs">
+      <DependentUpon>201909061316464_RAZREDI.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\MaterijalContext\202004130926040_DodavanjeModula.Designer.cs">
+      <DependentUpon>202004130926040_DodavanjeModula.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\MaterijalContext\202004141601328_IspravkaMaterijala.Designer.cs">
+      <DependentUpon>202004141601328_IspravkaMaterijala.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\MaterijalContext\202004281616586_IzmenaMaterijala.Designer.cs">
+      <DependentUpon>202004281616586_IzmenaMaterijala.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\MaterijalContext\202004281722043_IzmenaPredmeta.Designer.cs">
+      <DependentUpon>202004281722043_IzmenaPredmeta.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\MaterijalContext\202004291031474_ModulMaterijal.Designer.cs">
+      <DependentUpon>202004291031474_ModulMaterijal.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\MaterijalContext\202004301654512_GlobalniZahtevi.Designer.cs">
+      <DependentUpon>202004301654512_GlobalniZahtevi.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\MaterijalContext\202005070834487_GlobalniZahtevi1.Designer.cs">
+      <DependentUpon>202005070834487_GlobalniZahtevi1.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\MaterijalContext\202005120949226_MaterijalObrisan.Designer.cs">
+      <DependentUpon>202005120949226_MaterijalObrisan.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\MaterijalContext\202005130816299_SmeroviPoSkolama.Designer.cs">
+      <DependentUpon>202005130816299_SmeroviPoSkolama.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\MaterijalContext\202005180856249_PredlozeniModul.Designer.cs">
+      <DependentUpon>202005180856249_PredlozeniModul.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\VestiContext\201808170921538_Dodavanje_Vesti_U_Bazu.Designer.cs">
+      <DependentUpon>201808170921538_Dodavanje_Vesti_U_Bazu.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\VestiContext\201808220807445_DodavanjeDatumaICuvaSePutDoSlike.Designer.cs">
+      <DependentUpon>201808220807445_DodavanjeDatumaICuvaSePutDoSlike.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\VestiContext\201808221110015_DodavanjeKratkogOpisa.Designer.cs">
+      <DependentUpon>201808221110015_DodavanjeKratkogOpisa.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\VestiContext\201809031124163_TeloVestiZasebnaTabela.Designer.cs">
+      <DependentUpon>201809031124163_TeloVestiZasebnaTabela.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\css\forma-novikorisnik.css" />
+    <Content Include="Content\img\DeleteIco.png" />
+    <Content Include="Content\img\download.jpg" />
+    <Content Include="Content\img\jovan_ivkovic.jpg" />
+    <Content Include="Content\img\timer__hourglass__stopwatch__book__education-512.png" />
+    <Content Include="Content\uploads\Thumbnails\1dd1c9fa95994e2f856a12bdd6c9540f.jpg" />
+    <Content Include="Content\uploads\Thumbnails\29270ce92866499fa979357988dacfac.jpg" />
+    <Content Include="Content\uploads\Thumbnails\2ea80a312ac34c2695dc0a2b2f7fd013.png" />
+    <Content Include="Content\uploads\Thumbnails\3a2e5bc3026f4d1b907a91327508e6b3.jpg" />
+    <Content Include="Content\uploads\Thumbnails\3c2e1c0963be44628665a681d3fc5cd9.jpg" />
+    <Content Include="Content\uploads\Thumbnails\4d36b201040c4705a6b391b919b9114c.jpg" />
+    <Content Include="Content\uploads\Thumbnails\624508c8dc64428d86a65a984490f1ee.jpg" />
+    <Content Include="Content\uploads\Thumbnails\8f616ac7814c493dae0768030320bc70.jpg" />
+    <Content Include="Content\uploads\Thumbnails\a.png" />
+    <Content Include="Content\uploads\Thumbnails\db1f1594df4e464c8bc6083e7bb63c00.jpg" />
+    <Content Include="Content\uploads\Thumbnails\250a6408d31f46a889155fcb70e68b75" />
+    <Content Include="Scripts\prikaziLupicuPretraga.js" />
+    <Content Update="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Update="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Update="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\Konfiguracija\" />
+    <Folder Include="Scripts\Shared\" />
+    <Folder Include="Views\Error\" />
+    <Folder Include="Views\Shared\Editor templates\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Migrations\MaterijalContext\201805081242537_init.resx">
+      <DependentUpon>201805081242537_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\MaterijalContext\201805101144240_IDpredmetaNULL.resx">
+      <DependentUpon>201805101144240_IDpredmetaNULL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\MaterijalContext\201805160923559_Rename Tabele PredmetPoSmeru.resx">
+      <DependentUpon>201805160923559_Rename Tabele PredmetPoSmeru.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\MaterijalContext\201805220852305_DodavanjeImenaPredmetaISlike.resx">
+      <DependentUpon>201805220852305_DodavanjeImenaPredmetaISlike.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\MaterijalContext\201805241136490_promene.resx">
+      <DependentUpon>201805241136490_promene.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\MaterijalContext\201805241218127_Dodavanje Godine upisa, skole i strucne spreme.resx">
+      <DependentUpon>201805241218127_Dodavanje Godine upisa, skole i strucne spreme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\MaterijalContext\201805241256011_aaaaa.resx">
+      <DependentUpon>201805241256011_aaaaa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\MaterijalContext\201805241343001_Brisanje srucne spreme.resx">
+      <DependentUpon>201805241343001_Brisanje srucne spreme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\MaterijalContext\201805241346338_Dodavanje smera i uloge u korisnike.resx">
+      <DependentUpon>201805241346338_Dodavanje smera i uloge u korisnike.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\MaterijalContext\201805250932435_JosNekaSredjivanja.resx">
+      <DependentUpon>201805250932435_JosNekaSredjivanja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\MaterijalContext\201907081425002_ForumPokusaj2.resx">
+      <DependentUpon>201907081425002_ForumPokusaj2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\MaterijalContext\201907231454340_MaterijalModelProfesor.resx">
+      <DependentUpon>201907231454340_MaterijalModelProfesor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\MaterijalContext\201907231533348_PopravkaMaterijalModelProfesor.resx">
+      <DependentUpon>201907231533348_PopravkaMaterijalModelProfesor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\MaterijalContext\201907231703477_ispravke2.resx">
+      <DependentUpon>201907231703477_ispravke2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\MaterijalContext\201908051311119_popravka3.resx">
+      <DependentUpon>201908051311119_popravka3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\MaterijalContext\201908191449182_popravke4.resx">
+      <DependentUpon>201908191449182_popravke4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\MaterijalContext\201908211357131_Forum3.resx">
+      <DependentUpon>201908211357131_Forum3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\MaterijalContext\201908261558516_ForumMessage1.resx">
+      <DependentUpon>201908261558516_ForumMessage1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\MaterijalContext\201908271240117_ForumMessage2.resx">
+      <DependentUpon>201908271240117_ForumMessage2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\MaterijalContext\201909020919578_ForumMessage3.resx">
+      <DependentUpon>201909020919578_ForumMessage3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\MaterijalContext\201909020949558_ForumMEssage4.resx">
+      <DependentUpon>201909020949558_ForumMEssage4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\MaterijalContext\201909061316464_RAZREDI.resx">
+      <DependentUpon>201909061316464_RAZREDI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\MaterijalContext\202004130926040_DodavanjeModula.resx">
+      <DependentUpon>202004130926040_DodavanjeModula.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\MaterijalContext\202004141601328_IspravkaMaterijala.resx">
+      <DependentUpon>202004141601328_IspravkaMaterijala.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\MaterijalContext\202004281616586_IzmenaMaterijala.resx">
+      <DependentUpon>202004281616586_IzmenaMaterijala.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\MaterijalContext\202004281722043_IzmenaPredmeta.resx">
+      <DependentUpon>202004281722043_IzmenaPredmeta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\MaterijalContext\202004291031474_ModulMaterijal.resx">
+      <DependentUpon>202004291031474_ModulMaterijal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\MaterijalContext\202004301654512_GlobalniZahtevi.resx">
+      <DependentUpon>202004301654512_GlobalniZahtevi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\MaterijalContext\202005070834487_GlobalniZahtevi1.resx">
+      <DependentUpon>202005070834487_GlobalniZahtevi1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\MaterijalContext\202005120949226_MaterijalObrisan.resx">
+      <DependentUpon>202005120949226_MaterijalObrisan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\MaterijalContext\202005130816299_SmeroviPoSkolama.resx">
+      <DependentUpon>202005130816299_SmeroviPoSkolama.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\MaterijalContext\202005180856249_PredlozeniModul.resx">
+      <DependentUpon>202005180856249_PredlozeniModul.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\VestiContext\201808170921538_Dodavanje_Vesti_U_Bazu.resx">
+      <DependentUpon>201808170921538_Dodavanje_Vesti_U_Bazu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\VestiContext\201808220807445_DodavanjeDatumaICuvaSePutDoSlike.resx">
+      <DependentUpon>201808220807445_DodavanjeDatumaICuvaSePutDoSlike.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\VestiContext\201808221110015_DodavanjeKratkogOpisa.resx">
+      <DependentUpon>201808221110015_DodavanjeKratkogOpisa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Migrations\VestiContext\201809031124163_TeloVestiZasebnaTabela.resx">
+      <DependentUpon>201809031124163_TeloVestiZasebnaTabela.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="bootstrap" Version="4.1.3" />
+    <PackageReference Include="FubuCore" Version="2.0.1.321" />
+    <PackageReference Include="jQuery" Version="3.3.1" />
+    <PackageReference Include="jQuery.Validation" Version="1.17.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.Web" Version="2.9.1" />
+    <PackageReference Include="Microsoft.AspNet.Identity.Core" Version="2.2.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.jQuery.Unobtrusive.Validation" Version="3.2.11" />
+    <PackageReference Include="Modernizr" Version="2.8.3" />
+    <PackageReference Include="MvcSiteMapProvider.MVC5" Version="4.6.26" />
+    <PackageReference Include="MvcSiteMapProvider.Web" Version="4.6.26" />
+    <PackageReference Include="popper.js" Version="1.14.3" />
+    <PackageReference Include="Respond" Version="1.4.2" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="4.5.1" />
+    <PackageReference Include="System.Management" Version="5.0.0" />
+    <PackageReference Include="System.Runtime.Caching" Version="5.0.0" />
+    <PackageReference Include="System.Text.Encodings.Web" Version="4.5.0" />
+    <PackageReference Include="WebActivatorEx" Version="2.2.0" />
+    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.3.246501">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Antlr4" Version="4.6.6" />
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="HtmlTags" Version="8.1.1" />
+    <PackageReference Include="Microsoft.Owin.Security.Facebook" Version="4.2.0" />
+    <PackageReference Include="Microsoft.Owin.Security.Google" Version="4.2.0" />
+    <PackageReference Include="Microsoft.Owin.Security.MicrosoftAccount" Version="4.2.0" />
+    <PackageReference Include="Microsoft.Owin.Security.Twitter" Version="4.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.11" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Migrations\MaterijalContext\201801101031128_removePredmetModel_predmetId.cs" />
+    <Compile Remove="Migrations\MaterijalContext\201801101046249_removePredmetModel_predmetId_part2.cs" />
+    <Compile Remove="Migrations\MaterijalContext\201801101046249_removePredmetModel_predmetId_part2.Designer.cs" />
+    <Compile Remove="Migrations\MaterijalContext\201801101047287_removePredmetModel_predmetId_part3.Designer.cs" />
+    <Compile Remove="Migrations\MaterijalContext\202004130920542_DodavanjeModula.cs" />
+    <Compile Remove="Migrations\MaterijalContext\202004130920542_DodavanjeModula.Designer.cs" />
+    <EmbeddedResource Remove="Migrations\MaterijalContext\201801101046249_removePredmetModel_predmetId_part2.resx" />
+    <EmbeddedResource Remove="Migrations\MaterijalContext\201801101047287_removePredmetModel_predmetId_part3.resx" />
+    <EmbeddedResource Remove="Migrations\MaterijalContext\202004130920542_DodavanjeModula.resx" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,38 @@
+@model Projekat.ViewModels.ForumViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Microsoft.AspNet.Identity @*Privremeno dodato*@
+<div id="sredina" name="sredina" class="sredina-upload-mat">
+    @*{Html.RenderPartial("_DodavanjeTeme");}*@ @*PRIVREMENO OTKLONJENO*@
+
+    @*PRIVREMENO DODATO*@
+    @using (Html.BeginForm("DodavanjeTema", "Forum", new { idUser = User.Identity.GetUserId(), approved = "false" }, FormMethod.Post, new { @enctype = "multipart/form-data", @id = "postavkaMat" }))
+    {
+        <div class="text-center text-success hideAfter"><h4 class="moje4">@ViewBag.SuccMsg</h4></div>
+
+        <input type="file" name="file" id="file" class="inputfile" accept="image/*" data-rule-required="true" data-msg-accept="Unesi neki od formata slike" />
+        <label for="file" id="izaberi-materijal"> <span id="filename"> <span> <img src="~/Content/img/upload2.png" alt="Izaberite Dokument"> Izaberite sliku...</span></span> </label>
+
+        <label class="matDesignLabel" for="posttitle">Naslov</label>
+        @Html.TextBoxFor(x => x.forum.posttitle, new { @name = "posttitle", @class = "forum-textbox" })
+        @Html.ValidationMessageFor(x => x.forum.posttitle);
+
+        <label for="postmessage" class="matDesignLabel">Opis</label>
+        @Html.TextAreaFor(x => x.forum.postmessage, 2, 20, new { @id = @"materijalOpis", @name = "postmessage" })
+        @Html.ValidationMessageFor(x => x.forum.postmessage);
+
+        <button type="submit" id="postavi">
+            POSTAVI
+        </button>
+
+    }
+</div>
+
+@Scripts.Render("~/bundles/upload_materijal")
+@Scripts.Render("~/Scripts/Materijal/uploadNaziv.js")
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script>
+    setTimeout(function () {
+        $('.hideAfter').fadeOut('fast');
+    }, 5000);</script>
